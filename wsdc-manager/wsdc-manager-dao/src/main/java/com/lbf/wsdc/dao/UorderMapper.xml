@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lbf.wsdc.dao.UorderMapper" >
+  <resultMap id="BaseResultMap" type="com.lbf.wsdc.pojo.po.Uorder" >
+    <id column="uaccount" property="uaccount" jdbcType="CHAR" />
+    <id column="ordercode" property="ordercode" jdbcType="CHAR" />
+    <result column="storeId" property="storeid" jdbcType="BIGINT" />
+    <result column="uaddressid" property="uaddressid" jdbcType="INTEGER" />
+    <result column="orderfoodid" property="orderfoodid" jdbcType="VARCHAR" />
+    <result column="orderfoodpricenum" property="orderfoodpricenum" jdbcType="VARCHAR" />
+    <result column="uNote" property="unote" jdbcType="CHAR" />
+    <result column="orderdate" property="orderdate" jdbcType="TIMESTAMP" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="comment_two" property="commentTwo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uaccount, ordercode, storeId, uaddressid, orderfoodid, orderfoodpricenum, uNote, 
+    orderdate, comment, state, comment_two
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.UorderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from uorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.UorderKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from uorder
+    where uaccount = #{uaccount,jdbcType=CHAR}
+      and ordercode = #{ordercode,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.UorderKey" >
+    delete from uorder
+    where uaccount = #{uaccount,jdbcType=CHAR}
+      and ordercode = #{ordercode,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lbf.wsdc.pojo.po.UorderExample" >
+    delete from uorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lbf.wsdc.pojo.po.Uorder" >
+    insert into uorder (uaccount, ordercode, storeId, 
+      uaddressid, orderfoodid, orderfoodpricenum, 
+      uNote, orderdate, comment, 
+      state, comment_two)
+    values (#{uaccount,jdbcType=CHAR}, #{ordercode,jdbcType=CHAR}, #{storeid,jdbcType=BIGINT}, 
+      #{uaddressid,jdbcType=INTEGER}, #{orderfoodid,jdbcType=VARCHAR}, #{orderfoodpricenum,jdbcType=VARCHAR}, 
+      #{unote,jdbcType=CHAR}, #{orderdate,jdbcType=TIMESTAMP}, #{comment,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{commentTwo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lbf.wsdc.pojo.po.Uorder" >
+    insert into uorder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uaccount != null" >
+        uaccount,
+      </if>
+      <if test="ordercode != null" >
+        ordercode,
+      </if>
+      <if test="storeid != null" >
+        storeId,
+      </if>
+      <if test="uaddressid != null" >
+        uaddressid,
+      </if>
+      <if test="orderfoodid != null" >
+        orderfoodid,
+      </if>
+      <if test="orderfoodpricenum != null" >
+        orderfoodpricenum,
+      </if>
+      <if test="unote != null" >
+        uNote,
+      </if>
+      <if test="orderdate != null" >
+        orderdate,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="commentTwo != null" >
+        comment_two,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uaccount != null" >
+        #{uaccount,jdbcType=CHAR},
+      </if>
+      <if test="ordercode != null" >
+        #{ordercode,jdbcType=CHAR},
+      </if>
+      <if test="storeid != null" >
+        #{storeid,jdbcType=BIGINT},
+      </if>
+      <if test="uaddressid != null" >
+        #{uaddressid,jdbcType=INTEGER},
+      </if>
+      <if test="orderfoodid != null" >
+        #{orderfoodid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderfoodpricenum != null" >
+        #{orderfoodpricenum,jdbcType=VARCHAR},
+      </if>
+      <if test="unote != null" >
+        #{unote,jdbcType=CHAR},
+      </if>
+      <if test="orderdate != null" >
+        #{orderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="commentTwo != null" >
+        #{commentTwo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lbf.wsdc.pojo.po.UorderExample" resultType="java.lang.Integer" >
+    select count(*) from uorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update uorder
+    <set >
+      <if test="record.uaccount != null" >
+        uaccount = #{record.uaccount,jdbcType=CHAR},
+      </if>
+      <if test="record.ordercode != null" >
+        ordercode = #{record.ordercode,jdbcType=CHAR},
+      </if>
+      <if test="record.storeid != null" >
+        storeId = #{record.storeid,jdbcType=BIGINT},
+      </if>
+      <if test="record.uaddressid != null" >
+        uaddressid = #{record.uaddressid,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderfoodid != null" >
+        orderfoodid = #{record.orderfoodid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderfoodpricenum != null" >
+        orderfoodpricenum = #{record.orderfoodpricenum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unote != null" >
+        uNote = #{record.unote,jdbcType=CHAR},
+      </if>
+      <if test="record.orderdate != null" >
+        orderdate = #{record.orderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comment != null" >
+        comment = #{record.comment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.commentTwo != null" >
+        comment_two = #{record.commentTwo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update uorder
+    set uaccount = #{record.uaccount,jdbcType=CHAR},
+      ordercode = #{record.ordercode,jdbcType=CHAR},
+      storeId = #{record.storeid,jdbcType=BIGINT},
+      uaddressid = #{record.uaddressid,jdbcType=INTEGER},
+      orderfoodid = #{record.orderfoodid,jdbcType=VARCHAR},
+      orderfoodpricenum = #{record.orderfoodpricenum,jdbcType=VARCHAR},
+      uNote = #{record.unote,jdbcType=CHAR},
+      orderdate = #{record.orderdate,jdbcType=TIMESTAMP},
+      comment = #{record.comment,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      comment_two = #{record.commentTwo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lbf.wsdc.pojo.po.Uorder" >
+    update uorder
+    <set >
+      <if test="storeid != null" >
+        storeId = #{storeid,jdbcType=BIGINT},
+      </if>
+      <if test="uaddressid != null" >
+        uaddressid = #{uaddressid,jdbcType=INTEGER},
+      </if>
+      <if test="orderfoodid != null" >
+        orderfoodid = #{orderfoodid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderfoodpricenum != null" >
+        orderfoodpricenum = #{orderfoodpricenum,jdbcType=VARCHAR},
+      </if>
+      <if test="unote != null" >
+        uNote = #{unote,jdbcType=CHAR},
+      </if>
+      <if test="orderdate != null" >
+        orderdate = #{orderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="commentTwo != null" >
+        comment_two = #{commentTwo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uaccount = #{uaccount,jdbcType=CHAR}
+      and ordercode = #{ordercode,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.Uorder" >
+    update uorder
+    set storeId = #{storeid,jdbcType=BIGINT},
+      uaddressid = #{uaddressid,jdbcType=INTEGER},
+      orderfoodid = #{orderfoodid,jdbcType=VARCHAR},
+      orderfoodpricenum = #{orderfoodpricenum,jdbcType=VARCHAR},
+      uNote = #{unote,jdbcType=CHAR},
+      orderdate = #{orderdate,jdbcType=TIMESTAMP},
+      comment = #{comment,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      comment_two = #{commentTwo,jdbcType=VARCHAR}
+    where uaccount = #{uaccount,jdbcType=CHAR}
+      and ordercode = #{ordercode,jdbcType=CHAR}
+  </update>
+</mapper>

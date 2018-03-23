@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lbf.wsdc.dao.StoremenuMapper" >
+  <resultMap id="BaseResultMap" type="com.lbf.wsdc.pojo.po.Storemenu" >
+    <id column="storeid" property="storeid" jdbcType="BIGINT" />
+    <id column="foodid" property="foodid" jdbcType="INTEGER" />
+    <result column="foodname" property="foodname" jdbcType="VARCHAR" />
+    <result column="foodprices" property="foodprices" jdbcType="REAL" />
+    <result column="foodtype" property="foodtype" jdbcType="VARCHAR" />
+    <result column="foodic" property="foodic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    storeid, foodid, foodname, foodprices, foodtype, foodic
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.StoremenuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from storemenu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.StoremenuKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from storemenu
+    where storeid = #{storeid,jdbcType=BIGINT}
+      and foodid = #{foodid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.StoremenuKey" >
+    delete from storemenu
+    where storeid = #{storeid,jdbcType=BIGINT}
+      and foodid = #{foodid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lbf.wsdc.pojo.po.StoremenuExample" >
+    delete from storemenu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lbf.wsdc.pojo.po.Storemenu" >
+    insert into storemenu (storeid, foodid, foodname, 
+      foodprices, foodtype, foodic
+      )
+    values (#{storeid,jdbcType=BIGINT}, #{foodid,jdbcType=INTEGER}, #{foodname,jdbcType=VARCHAR}, 
+      #{foodprices,jdbcType=REAL}, #{foodtype,jdbcType=VARCHAR}, #{foodic,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lbf.wsdc.pojo.po.Storemenu" >
+    insert into storemenu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeid != null" >
+        storeid,
+      </if>
+      <if test="foodid != null" >
+        foodid,
+      </if>
+      <if test="foodname != null" >
+        foodname,
+      </if>
+      <if test="foodprices != null" >
+        foodprices,
+      </if>
+      <if test="foodtype != null" >
+        foodtype,
+      </if>
+      <if test="foodic != null" >
+        foodic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeid != null" >
+        #{storeid,jdbcType=BIGINT},
+      </if>
+      <if test="foodid != null" >
+        #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="foodname != null" >
+        #{foodname,jdbcType=VARCHAR},
+      </if>
+      <if test="foodprices != null" >
+        #{foodprices,jdbcType=REAL},
+      </if>
+      <if test="foodtype != null" >
+        #{foodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="foodic != null" >
+        #{foodic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lbf.wsdc.pojo.po.StoremenuExample" resultType="java.lang.Integer" >
+    select count(*) from storemenu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update storemenu
+    <set >
+      <if test="record.storeid != null" >
+        storeid = #{record.storeid,jdbcType=BIGINT},
+      </if>
+      <if test="record.foodid != null" >
+        foodid = #{record.foodid,jdbcType=INTEGER},
+      </if>
+      <if test="record.foodname != null" >
+        foodname = #{record.foodname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.foodprices != null" >
+        foodprices = #{record.foodprices,jdbcType=REAL},
+      </if>
+      <if test="record.foodtype != null" >
+        foodtype = #{record.foodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.foodic != null" >
+        foodic = #{record.foodic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update storemenu
+    set storeid = #{record.storeid,jdbcType=BIGINT},
+      foodid = #{record.foodid,jdbcType=INTEGER},
+      foodname = #{record.foodname,jdbcType=VARCHAR},
+      foodprices = #{record.foodprices,jdbcType=REAL},
+      foodtype = #{record.foodtype,jdbcType=VARCHAR},
+      foodic = #{record.foodic,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lbf.wsdc.pojo.po.Storemenu" >
+    update storemenu
+    <set >
+      <if test="foodname != null" >
+        foodname = #{foodname,jdbcType=VARCHAR},
+      </if>
+      <if test="foodprices != null" >
+        foodprices = #{foodprices,jdbcType=REAL},
+      </if>
+      <if test="foodtype != null" >
+        foodtype = #{foodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="foodic != null" >
+        foodic = #{foodic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where storeid = #{storeid,jdbcType=BIGINT}
+      and foodid = #{foodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.Storemenu" >
+    update storemenu
+    set foodname = #{foodname,jdbcType=VARCHAR},
+      foodprices = #{foodprices,jdbcType=REAL},
+      foodtype = #{foodtype,jdbcType=VARCHAR},
+      foodic = #{foodic,jdbcType=VARCHAR}
+    where storeid = #{storeid,jdbcType=BIGINT}
+      and foodid = #{foodid,jdbcType=INTEGER}
+  </update>
+</mapper>

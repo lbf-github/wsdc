@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/wsdc-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-manager" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-manager-pojo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-manager/wsdc-manager-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-manager/wsdc-manager-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-manager/wsdc-manager-pojo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-manager/wsdc-manager-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-manager/wsdc-manager-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-parent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-portal-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-search-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wsdc-sso-web" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

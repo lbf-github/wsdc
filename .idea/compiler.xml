@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="wsdc-common" />
+        <module name="wsdc-manager-dao" />
+        <module name="wsdc-manager-interface" />
+        <module name="wsdc-manager-pojo" />
+        <module name="wsdc-manager-service" />
+        <module name="wsdc-manager-web" />
+        <module name="wsdc-portal-web" />
+        <module name="wsdc-search-web" />
+        <module name="wsdc-sso-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.7">
+      <module name="wsdc-common" target="1.7" />
+      <module name="wsdc-manager" target="1.7" />
+      <module name="wsdc-manager-dao" target="1.7" />
+      <module name="wsdc-manager-interface" target="1.7" />
+      <module name="wsdc-manager-pojo" target="1.7" />
+      <module name="wsdc-manager-service" target="1.7" />
+      <module name="wsdc-manager-web" target="1.7" />
+      <module name="wsdc-parent" target="1.7" />
+      <module name="wsdc-portal-web" target="1.7" />
+      <module name="wsdc-search-web" target="1.7" />
+      <module name="wsdc-sso-web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

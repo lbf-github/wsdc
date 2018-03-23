@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wsdc-sso-web:war">
+    <output-path>$PROJECT_DIR$/wsdc-sso-web/target</output-path>
+    <root id="archive" name="wsdc-sso-web.war">
+      <element id="artifact" artifact-name="wsdc-sso-web:war exploded" />
+    </root>
+  </artifact>
+</component>

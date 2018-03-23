@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lbf.wsdc.dao.SensitivetMapper" >
+  <resultMap id="BaseResultMap" type="com.lbf.wsdc.pojo.po.Sensitivet" >
+    <id column="sensitiveid" property="sensitiveid" jdbcType="BIGINT" />
+    <result column="sensitiveword" property="sensitiveword" jdbcType="CHAR" />
+    <result column="LEVEL" property="level" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sensitiveid, sensitiveword, LEVEL, date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.SensitivetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sensitivet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sensitivet
+    where sensitiveid = #{sensitiveid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sensitivet
+    where sensitiveid = #{sensitiveid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lbf.wsdc.pojo.po.SensitivetExample" >
+    delete from sensitivet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lbf.wsdc.pojo.po.Sensitivet" >
+    insert into sensitivet (sensitiveid, sensitiveword, LEVEL, 
+      date)
+    values (#{sensitiveid,jdbcType=BIGINT}, #{sensitiveword,jdbcType=CHAR}, #{level,jdbcType=INTEGER}, 
+      #{date,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lbf.wsdc.pojo.po.Sensitivet" >
+    insert into sensitivet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sensitiveid != null" >
+        sensitiveid,
+      </if>
+      <if test="sensitiveword != null" >
+        sensitiveword,
+      </if>
+      <if test="level != null" >
+        LEVEL,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sensitiveid != null" >
+        #{sensitiveid,jdbcType=BIGINT},
+      </if>
+      <if test="sensitiveword != null" >
+        #{sensitiveword,jdbcType=CHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lbf.wsdc.pojo.po.SensitivetExample" resultType="java.lang.Integer" >
+    select count(*) from sensitivet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sensitivet
+    <set >
+      <if test="record.sensitiveid != null" >
+        sensitiveid = #{record.sensitiveid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sensitiveword != null" >
+        sensitiveword = #{record.sensitiveword,jdbcType=CHAR},
+      </if>
+      <if test="record.level != null" >
+        LEVEL = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sensitivet
+    set sensitiveid = #{record.sensitiveid,jdbcType=BIGINT},
+      sensitiveword = #{record.sensitiveword,jdbcType=CHAR},
+      LEVEL = #{record.level,jdbcType=INTEGER},
+      date = #{record.date,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lbf.wsdc.pojo.po.Sensitivet" >
+    update sensitivet
+    <set >
+      <if test="sensitiveword != null" >
+        sensitiveword = #{sensitiveword,jdbcType=CHAR},
+      </if>
+      <if test="level != null" >
+        LEVEL = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sensitiveid = #{sensitiveid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.Sensitivet" >
+    update sensitivet
+    set sensitiveword = #{sensitiveword,jdbcType=CHAR},
+      LEVEL = #{level,jdbcType=INTEGER},
+      date = #{date,jdbcType=TIMESTAMP}
+    where sensitiveid = #{sensitiveid,jdbcType=BIGINT}
+  </update>
+</mapper>

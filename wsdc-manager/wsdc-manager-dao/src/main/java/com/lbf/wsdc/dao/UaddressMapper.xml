@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lbf.wsdc.dao.UaddressMapper" >
+  <resultMap id="BaseResultMap" type="com.lbf.wsdc.pojo.po.Uaddress" >
+    <id column="uaddressid" property="uaddressid" jdbcType="INTEGER" />
+    <id column="uaccount" property="uaccount" jdbcType="CHAR" />
+    <result column="ucontact" property="ucontact" jdbcType="VARCHAR" />
+    <result column="usex" property="usex" jdbcType="INTEGER" />
+    <result column="utel" property="utel" jdbcType="CHAR" />
+    <result column="uaddress" property="uaddress" jdbcType="VARCHAR" />
+    <result column="utag" property="utag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    uaddressid, uaccount, ucontact, usex, utel, uaddress, utag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.UaddressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from uaddress
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.UaddressKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from uaddress
+    where uaddressid = #{uaddressid,jdbcType=INTEGER}
+      and uaccount = #{uaccount,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.UaddressKey" >
+    delete from uaddress
+    where uaddressid = #{uaddressid,jdbcType=INTEGER}
+      and uaccount = #{uaccount,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lbf.wsdc.pojo.po.UaddressExample" >
+    delete from uaddress
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lbf.wsdc.pojo.po.Uaddress" >
+    insert into uaddress (uaddressid, uaccount, ucontact, 
+      usex, utel, uaddress, 
+      utag)
+    values (#{uaddressid,jdbcType=INTEGER}, #{uaccount,jdbcType=CHAR}, #{ucontact,jdbcType=VARCHAR}, 
+      #{usex,jdbcType=INTEGER}, #{utel,jdbcType=CHAR}, #{uaddress,jdbcType=VARCHAR}, 
+      #{utag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lbf.wsdc.pojo.po.Uaddress" >
+    insert into uaddress
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uaddressid != null" >
+        uaddressid,
+      </if>
+      <if test="uaccount != null" >
+        uaccount,
+      </if>
+      <if test="ucontact != null" >
+        ucontact,
+      </if>
+      <if test="usex != null" >
+        usex,
+      </if>
+      <if test="utel != null" >
+        utel,
+      </if>
+      <if test="uaddress != null" >
+        uaddress,
+      </if>
+      <if test="utag != null" >
+        utag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uaddressid != null" >
+        #{uaddressid,jdbcType=INTEGER},
+      </if>
+      <if test="uaccount != null" >
+        #{uaccount,jdbcType=CHAR},
+      </if>
+      <if test="ucontact != null" >
+        #{ucontact,jdbcType=VARCHAR},
+      </if>
+      <if test="usex != null" >
+        #{usex,jdbcType=INTEGER},
+      </if>
+      <if test="utel != null" >
+        #{utel,jdbcType=CHAR},
+      </if>
+      <if test="uaddress != null" >
+        #{uaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="utag != null" >
+        #{utag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lbf.wsdc.pojo.po.UaddressExample" resultType="java.lang.Integer" >
+    select count(*) from uaddress
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update uaddress
+    <set >
+      <if test="record.uaddressid != null" >
+        uaddressid = #{record.uaddressid,jdbcType=INTEGER},
+      </if>
+      <if test="record.uaccount != null" >
+        uaccount = #{record.uaccount,jdbcType=CHAR},
+      </if>
+      <if test="record.ucontact != null" >
+        ucontact = #{record.ucontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usex != null" >
+        usex = #{record.usex,jdbcType=INTEGER},
+      </if>
+      <if test="record.utel != null" >
+        utel = #{record.utel,jdbcType=CHAR},
+      </if>
+      <if test="record.uaddress != null" >
+        uaddress = #{record.uaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.utag != null" >
+        utag = #{record.utag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update uaddress
+    set uaddressid = #{record.uaddressid,jdbcType=INTEGER},
+      uaccount = #{record.uaccount,jdbcType=CHAR},
+      ucontact = #{record.ucontact,jdbcType=VARCHAR},
+      usex = #{record.usex,jdbcType=INTEGER},
+      utel = #{record.utel,jdbcType=CHAR},
+      uaddress = #{record.uaddress,jdbcType=VARCHAR},
+      utag = #{record.utag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lbf.wsdc.pojo.po.Uaddress" >
+    update uaddress
+    <set >
+      <if test="ucontact != null" >
+        ucontact = #{ucontact,jdbcType=VARCHAR},
+      </if>
+      <if test="usex != null" >
+        usex = #{usex,jdbcType=INTEGER},
+      </if>
+      <if test="utel != null" >
+        utel = #{utel,jdbcType=CHAR},
+      </if>
+      <if test="uaddress != null" >
+        uaddress = #{uaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="utag != null" >
+        utag = #{utag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uaddressid = #{uaddressid,jdbcType=INTEGER}
+      and uaccount = #{uaccount,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.Uaddress" >
+    update uaddress
+    set ucontact = #{ucontact,jdbcType=VARCHAR},
+      usex = #{usex,jdbcType=INTEGER},
+      utel = #{utel,jdbcType=CHAR},
+      uaddress = #{uaddress,jdbcType=VARCHAR},
+      utag = #{utag,jdbcType=VARCHAR}
+    where uaddressid = #{uaddressid,jdbcType=INTEGER}
+      and uaccount = #{uaccount,jdbcType=CHAR}
+  </update>
+</mapper>
