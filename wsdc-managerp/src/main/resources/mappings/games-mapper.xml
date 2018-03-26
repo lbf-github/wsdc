@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.GamesMapper">
+
+	<sql id="selectId">
+		id,
+		game_type,
+		create_date,
+		rec_yn,
+		(select u.userName from cy_user u where u.id = tb_game_class.create_by) create_by,
+		description,
+		sort,
+		update_date,
+		(select u.userName from cy_user u where u.id = tb_game_class.update_by) update_by
+	</sql>
+	<sql id="selectIdGame">
+		id,
+		game_name,
+		game_img,
+		player_num,
+		size,
+		intro,
+		(select t.game_type from tb_game_class t where t.id = tb_games.game_type) game_type,
+		url,
+		create_date,
+		hot,
+		newest,
+		sort
+	</sql>
+	<select id="findGameTypePage" resultType="com.titi.entity.GameTypeFormMap">
+		select
+		<include refid="selectId" />
+		from tb_game_class
+		<where>
+			<if test="game_type != null and game_type != ''">
+				and game_type like '%${game_type}%'
+			</if>
+			<if test="rec_yn != null and rec_yn != ''">
+				and rec_yn = #{rec_yn}
+			</if>
+		</where>
+		order by sort
+	</select>
+	<select id="findGamePage" resultType="com.titi.entity.GamesFormMap">
+		select
+		<include refid="selectIdGame" />
+		from tb_games
+		<where>
+			<if test="game_name != null and game_name != ''">
+				and game_name like '%${game_name}%'
+			</if>
+			<if test="hot != null and hot != ''">
+				and hot = #{hot}
+			</if>
+		</where>
+		order by sort
+	</select>
+	
+</mapper>

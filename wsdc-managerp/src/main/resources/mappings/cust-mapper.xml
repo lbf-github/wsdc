@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.CustInfoMapper">
+
+	<select id="findCustInfoPage" resultType="com.titi.entity.CustInfoFormMap">
+		select
+		user_info.id,
+		user_info.account_id,
+		user_info.shareCode,
+		user_info.head_img,
+		user_info.area,
+		user_info.userName,
+		user_info.signature,
+		user_info.ringLetter,
+		user_info.latitude,
+		user_info.longitude,
+		account.mobile,
+		account.password,
+		account.reg_from,
+		account.status,
+		nickname,
+		sex,
+		birth
+		from tb_user_info user_info
+		left join tb_user_account account on account.id = user_info.account_id
+		<where>
+			<if test="mobile != null and mobile != ''">
+				and mobile like '%${mobile}%'
+			</if>
+			<if test="reg_from != null and reg_from != ''">
+				and reg_from = #{reg_from}
+			</if>
+			<if test="status != null and status != ''">
+				and status = #{status}  
+			</if>
+			<if test="nickname != null and nickname != ''">
+				and nickname like '%${nickname}%'
+			</if>
+			<if test="sex != null and sex != ''">
+				and sex = #{sex}  
+			</if>
+		</where>
+	</select>
+	
+</mapper>

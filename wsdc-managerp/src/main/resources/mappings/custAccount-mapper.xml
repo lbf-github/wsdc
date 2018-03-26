@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.CustAccountMapper">
+
+	<select id="findCustAccountPage" resultType="com.titi.entity.CustInfoFormMap">
+		select
+		id,
+		mobile,
+		password,
+		reg_from,
+		status,
+		create_date
+		from tb_user_account
+		<where>
+			<if test="mobile != null and mobile != ''">
+				and mobile like '%${mobile}%'
+			</if>
+			<if test="reg_from != null and reg_from != ''">
+				and reg_from = #{reg_from}
+			</if>
+			<if test="status != null and status != ''">
+				and status = #{status}  
+			</if>
+		</where>
+	</select>
+	
+	<!-- 显示列表 -->
+	<select id="findCustAccountList" resultType="com.titi.entity.CustInfoFormMap">
+		select account_id,
+	    (select nickname from tb_user_info info WHERE info.account_id = account.id) nickname
+		from tb_user_account account where status != 1  
+		order by create_date desc
+	</select>
+	
+	<!-- 新增账户信息数据 -->
+	<insert id="addCustAccountEntity" parameterType="com.titi.entity.CustAccountFormMap" 
+		useGeneratedKeys="true" keyProperty="account_id">
+		replace into tb_user_account(account_name,reg_from,create_date) values
+		(#{account_name},#{reg_from},#{create_date})
+	</insert>
+	
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.ItemProductMapper">
+	
+	<sql id="selectId">
+		id,
+		site_id,
+		shop_id,
+		data_type,
+		item_nm,
+		detail,
+		seq,
+		create_date,
+		(select u.userName from cy_user u where u.id = tb_item_product.create_by) create_by,
+		update_date,
+		(select u.userName from cy_user u where u.id = tb_item_product.update_by) update_by
+	</sql>
+
+	<!--分页显示产品列表  -->
+	<select id="findItemProductPage" resultType="com.titi.entity.ItemProductFormMap">
+		select
+		<include refid="selectId" />
+		from tb_item_product 
+		<where>
+			<if test="item_nm != null and item_nm != ''">
+				and item_nm like '%${item_nm}%'
+			</if>
+		</where>
+		order by seq desc,create_date desc
+	</select>
+	
+	<!-- 新增产品信息 -->
+	<insert id="addItemProductEntity" parameterType="com.titi.entity.ItemProductFormMap" 
+		useGeneratedKeys="true" keyProperty="id">
+		replace into tb_item_product(item_nm,detail,seq,create_by,create_date,update_by,update_date) values
+		 (#{item_nm},#{detail},#{seq},#{create_by},now(),#{update_by},now())
+	</insert>
+	
+</mapper>

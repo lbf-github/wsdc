@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.UserFriendMapper">
+
+	<sql id="selectId">
+		u.id,u.head_img,u.account_id,u.nickname,u.sex,u.area,u.userName,u.signature,u.ringLetter,u.birth,u.latitude,u.longitude
+	</sql>
+	<select id="findUserFriend" resultType="com.titi.entity.CustInfoFormMap">
+		select
+		<include refid="selectId" />
+
+		from tb_user_info u,tb_user_friend f
+		where u.id = f.friend_id AND status = 1 AND f.user_id = #{userId}
+	</select>
+	<delete id="deleteUserFriend">
+		DELETE FROM tb_user_friend WHERE user_id=#{userId} AND friend_id = #{friendId}
+	</delete>
+	<select id="findUserNearby" resultType="com.titi.entity.CustInfoFormMap">
+		select
+		<include refid="selectId" />
+		,ringLetter as distance
+		from tb_user_info u
+		where u.latitude &gt; #{lat1} AND u.latitude &lt; #{lat2} AND u.longitude &gt; #{lon1} AND u.longitude &lt; #{lon2}
+	</select>
+	
+</mapper>

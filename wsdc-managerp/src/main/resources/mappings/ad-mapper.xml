@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.AdMapper">
+	<sql id="selectId">
+		ad.id,
+	 	ad.site_id,
+	 	ad.shop_id,
+	 	ad.data_type,
+	 	type, 
+	 	mca,
+		(select url from tb_attachment a where a.id = ad.img_id) as img_id,
+		title,
+		url,
+		link,
+		seq,
+		ad.description,
+		show_yn,
+		province_id,
+		city_id,
+		data_dic_pro.name province_name,
+	 	data_dic_city.name city_name   
+	</sql>
+    
+    <!-- 查询广告信息列表 -->
+	<select id="selectList" parameterType="com.titi.entity.AdFormMap" resultType="com.titi.entity.AdFormMap">
+		select 
+		<include refid="selectId" />
+		from tb_ad ad
+		left join tb_data_dictionary data_dic_pro on data_dic_pro.id=ad.province_id
+    	left join tb_data_dictionary data_dic_city on data_dic_city.id=ad.city_id
+		<where>
+			<if test="province_id != null and province_id != ''">
+				and province_id = ${province_id}  
+			</if>
+			<if test="city_id != null and city_id != ''">
+				and city_id = ${city_id}  
+			</if>
+		</where>
+		order by seq desc
+	</select>
+	
+	<!-- 根据id查询广告信息 -->
+	<select id="selectById" parameterType="String" resultType="com.titi.entity.AdFormMap">
+		select
+		<include refid="selectId" />
+		from tb_ad ad 
+		left join tb_data_dictionary data_dic_pro on data_dic_pro.id=ad.province_id
+    	left join tb_data_dictionary data_dic_city on data_dic_city.id=ad.city_id
+    	where ad.id = #{id}
+	</select>
+	
+</mapper>

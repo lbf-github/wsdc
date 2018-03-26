@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.ClassifyItemMapper">
+
+	<select id="findIsExist" resultType="java.lang.Integer">
+		select count(*) from tb_classify_item
+		where classify_id=#{classify_id} and item_id=#{item_id}
+	</select>
+
+	<select id="findClassIdByItmId" resultType="java.lang.String">
+		select classify_id from tb_classify_item
+		where item_id=#{item_id}
+	</select>
+
+	<select id="editClassId">
+		UPDATE tb_classify_item set classify_id=#{classify_id}
+		where item_id=#{item_id}
+	</select>
+
+</mapper>

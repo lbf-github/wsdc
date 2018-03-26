@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.FavoriteMapper">
+
+	<!-- 列表集合 -->
+	<select id="selectList" parameterType="com.titi.entity.FavoriteFormMap" resultType="com.titi.entity.FavoriteFormMap">
+		select id,(select nickname from tb_user_info u where u.account_id = f.user_id) as user_id,favorite_type,
+		(select item_nm from tb_item i where i.id = f.rel_id) rel_id,favorite_date from tb_favorite f
+	</select>
+
+</mapper>

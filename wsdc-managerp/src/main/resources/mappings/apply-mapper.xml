@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.ApplyMapper">
+
+	<select id="selectList" resultType="com.titi.entity.ApplyFormMap">
+		select 
+		id,
+		sn1,
+		(select m.title from tb_item m where m.id = a.item_id) item_id,
+		(select nickname from tb_user_info a where a.account_id = a.user_id) user_id,
+		name,
+		mobile,
+		address,
+		remark 
+		from tb_service_apply a 
+		order by create_date desc
+	</select>
+	
+	<select id="getDetail" resultType="com.titi.entity.ApplyFormMap">
+		select 
+		id,
+		sn1,
+		(select m.title from tb_item m where m.id = a.item_id) item_id,
+		(select nickname from tb_user_info a where a.account_id = a.user_id) user_id,
+		 name,
+		 mobile,
+		 address,
+		 remark,
+		 create_date 
+		 from tb_service_apply a 
+		 where sn1 = #{sn1}
+	</select>
+	
+  	<select id="getPic" resultType="com.titi.entity.ApplyPicFormMap">
+		select 
+		id, 
+		(select url from tb_attachment t where t.id = i.url) url 
+		from tb_service_img i where apply_id = #{id}
+	</select>
+	
+</mapper>

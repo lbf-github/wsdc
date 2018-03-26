@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.ResourcesMapper">
+	<!--mybatis ehcache缓存配置 -->
+	<!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 <cache type="org.mybatis.caches.ehcache.LoggingEhcache" 
+		/> -->
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
+
+	<sql id="selectId">
+		id,
+		name,
+		parentId,
+		(select r.name from cy_resources r where r.id = cy_resources.parentId )
+		parentName,
+		resKey,
+		ishide,
+		type,
+		resUrl,
+		level,
+		icon,
+		description
+	</sql>
+	<select id="findChildlists" resultType="com.titi.entity.ResFormMap">
+		SELECT
+		<include refid="selectId" />
+		from cy_resources
+		where parentId = #{id} and ishide!=1
+	</select>
+	
+	<!-- 获取该用户的权限 -->
+	<select id="findRes" parameterType="String" resultType="com.titi.entity.ResFormMap">
+		SELECT
+		<include refid="selectId" />
+		from cy_resources where id in(
+		select resId from
+		cy_res_user where 1=1
+		<if test="userId != null and userId != '' and userId != 0">
+			and userId = #{userId}
+		</if>
+		<if test="roleId != null and roleId != '' and roleId != 0">
+			and userId in (SELECT userId from cy_user_role where roleId = #{roleId})
+		</if>
+		)
+		<if test="parentId != null and parentId != '' and parentId != 0">
+			and parentId = #{parentId}
+		</if>
+		order by level
+	</select>
+
+	<!-- 根据账号Id获取该用户的权限 -->
+	<select id="findUserResourcess" parameterType="String"
+		resultType="com.titi.entity.ResFormMap">
+		SELECT
+		<include refid="selectId" />
+		from cy_resources where id in(
+		select resId from cy_res_user
+		where userId=#{userId})
+	</select>
+	
+	<update id="updateSortOrder" parameterType="java.util.List">
+    	<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        	update cy_resources
+            <set>
+            	level = #{item.level}
+            </set>
+            where id = #{item.id}
+        </foreach>
+	</update>
+	
+	<!-- 删 -->
+	<delete id="deleteResourcesRole" parameterType="String">
+		delete from cy_res_roles where role_id=#{id}
+	</delete>
+
+	<insert id="addRoleRes">
+		insert into cy_res_roles (role_id,resc_id) value (#{roleId},#{resId})
+	</insert>
+
+</mapper>

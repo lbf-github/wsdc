@@ -256,7 +256,6 @@
         }
     });
     function success_submit(){
-        debugger;
         $("#formPassword").ajaxSubmit({
             type:'post',
             url: 'doLogin',

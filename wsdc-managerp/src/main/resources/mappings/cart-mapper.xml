@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.CartMapper">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+		cart.id,
+		cart.site_id,
+		cart.shop_id,
+		cart.data_type,
+		item.title,
+		number,
+		t,
+		user_id,
+		account.mobile,
+		info.nickname,
+		cart.create_date
+	</sql>
+	
+	<select id="findCartPage" resultType="com.titi.entity.CartFormMap">
+		select
+		<include refid="selectId" />
+			from tb_cart cart
+			left join tb_item item on item.id = cart.item_id
+			left join tb_user_account account on account.id = cart.user_id
+			left join tb_user_info info on info.account_id = cart.user_id
+		<where>
+			cart.del_flag = false
+			<if test="user_id != null and user_id != ''">
+				and cart.user_id = ${user_id}
+			</if>
+			<if test="item_nm != null and item_nm != ''">
+				and item.item_nm like '%${item_nm}%'
+			</if>
+			<if test="mobile != null and mobile != ''">
+				and account.mobile like '%${mobile}%'
+			</if>
+			<if test="nickname != null and nickname != ''">
+				and info.nickname like '%${nickname}%'
+			</if>
+		</where>
+		<if test="paging != null and paging != ''">
+			${paging.orderby}
+		</if>
+	</select>
+</mapper>

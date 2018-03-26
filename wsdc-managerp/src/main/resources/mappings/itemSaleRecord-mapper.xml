@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.ItemSaleRecordMapper">
+	
+	<sql id="selectId">
+		id,
+	  	site_id,
+	   	shop_id,
+	   	data_type,
+	  	item_id,
+	   	title,
+	   	price_single,
+	   	price_original,
+	   	min(create_date) min_create_date,
+	   	max(create_date) max_create_date,
+	   	create_date,
+	   	SUM(sale_num) sale_total
+	</sql>
+
+	<!--分页查询商品的销售记录信息  -->
+	<select id="findItemSaleRecordPage" resultType="com.titi.entity.ItemSaleRecordFormMap">
+		select
+		<include refid="selectId" />
+		from tb_item_sale_record 
+		<where>
+		    <if test="item_id != null and item_id != ''">
+				and item_id = ${item_id}  
+			</if>
+			<if test="startTime != null and endTime != null ">
+				and unix_timestamp(create_date) between unix_timestamp('${startTime}') and unix_timestamp('${endTime}')+24*60*60-1
+			</if>
+		</where>
+	</select>
+	
+</mapper>

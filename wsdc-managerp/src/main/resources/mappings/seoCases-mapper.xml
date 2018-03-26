@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.SeoCasesMapper">
+	
+	<sql id="selectId">
+		id,
+		site_id,
+		shop_id,
+		data_type,
+		title,
+		seq,
+		create_date,
+		(select u.userName from cy_user u where u.id = cases.create_by) create_by,
+		update_date,
+		(select u.userName from cy_user u where u.id = cases.update_by) update_by
+	</sql>
+
+	<select id="findSeoCasesPage" resultType="com.titi.entity.SeoCasesFormMap">
+		select
+		<include refid="selectId" />
+		from tb_classic_cases cases
+		<where>
+			<if test="title != null and title != ''">
+				and title like '%${title}%'
+			</if>
+		</where>
+		order by seq desc,create_date desc
+	</select>
+	
+</mapper>

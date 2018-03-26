@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.ReplyMapper">
+	<select id="selectList" parameterType="com.titi.entity.ReplyFormMap" resultType="com.titi.entity.ReplyFormMap">
+		select id,(select nickname from tb_user_info f where f.account_id = e.user_id) as user_id,rel_type,content,
+		stars_item,stars_service,stars_rider,create_date,r_yn,type from tb_eval e where `type` = 0 and e.rel_id = ${rel_id} and del_flag = 0
+	</select>
+	
+	<select id="getEvalPic" parameterType="String" resultType="com.titi.entity.ReplyImgFormMap">
+		select id, (select url from tb_attachment a where a.id = e.img_id) as img_id,eval_id from tb_eval_img e where eval_id = #{id}
+	</select>
+	
+	<select id="selectById" parameterType="com.titi.entity.ReplyFormMap" resultType="com.titi.entity.ReplyFormMap">
+		select id,content  from tb_eval where rel_id = #{id} and `type` = 1 and del_flag = 0 order by create_date desc limit 1
+	</select>
+	
+ 	<update id="delEval" parameterType="list">
+		update tb_eval set del_flag = 1 where id in 
+		<foreach collection="list" item="ids" open="(" separator=","
+			close=")">
+			${ids}
+		</foreach>
+	</update>
+	
+	<!-- <update id="delEval" parameterType="String">
+		update tb_eval set del_flag = 1 where id  = #{id}
+	</update> -->
+	
+	<!-- 根据商品id和用户id查评价 -->
+	<select id="getInfoById" parameterType="com.titi.entity.ReplyFormMap" resultType="com.titi.entity.ReplyFormMap">
+		select id,user_id,rel_id,content,stars_item,stars_service,stars_rider,create_date from tb_eval 
+		where user_id=#{user_id} and rel_id= #{rel_id} and del_flag = 0 and type= 0 order by create_date desc limit 1
+	</select>
+</mapper>

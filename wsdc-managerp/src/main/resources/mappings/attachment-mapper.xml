@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.AttachmentMapper">
+	
+	<!-- 新增附件表数据 -->
+	<insert id="addAttachmentEntity" parameterType="com.titi.entity.AttachmentFormMap" 
+		useGeneratedKeys="true" keyProperty="id">
+		replace into tb_attachment(title,url,create_by,create_date,last_use_date) values
+		 (#{title},#{url},#{create_by},now(),now())
+	</insert>
+	
+</mapper>

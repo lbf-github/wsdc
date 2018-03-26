@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/wsdc-manager/wsdc-manager-pojo/wsdc-manager-pojo.iml" filepath="$PROJECT_DIR$/wsdc-manager/wsdc-manager-pojo/wsdc-manager-pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/wsdc-manager/wsdc-manager-service/wsdc-manager-service.iml" filepath="$PROJECT_DIR$/wsdc-manager/wsdc-manager-service/wsdc-manager-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/wsdc-manager/wsdc-manager-web/wsdc-manager-web.iml" filepath="$PROJECT_DIR$/wsdc-manager/wsdc-manager-web/wsdc-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wsdc-managerp/wsdc-managerp.iml" filepath="$PROJECT_DIR$/wsdc-managerp/wsdc-managerp.iml" />
       <module fileurl="file://$PROJECT_DIR$/wsdc-parent/wsdc-parent.iml" filepath="$PROJECT_DIR$/wsdc-parent/wsdc-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/wsdc-portal-web/wsdc-portal-web.iml" filepath="$PROJECT_DIR$/wsdc-portal-web/wsdc-portal-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/wsdc-search-web/wsdc-search-web.iml" filepath="$PROJECT_DIR$/wsdc-search-web/wsdc-search-web.iml" />

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.ClassifyMapper">
+	
+	<sql id="selectId">
+		id,
+		site_id,
+		shop_id,
+		data_type,
+		title,
+		rec_yn,
+		seq,
+		create_date,
+		(select u.userName from cy_user u where u.id = tb_classify.create_by) create_by,
+		update_date,
+		(select u.userName from cy_user u where u.id = tb_classify.update_by) update_by
+	</sql>
+
+	<select id="findClassifyPage" resultType="com.titi.entity.ClassifyFormMap">
+		select
+		<include refid="selectId" />
+		from tb_classify 
+		<where>
+			<if test="title != null and title != ''">
+				and title like '%${title}%'
+			</if>
+			<if test="rec_yn != null and rec_yn != ''">
+				and rec_yn = #{rec_yn}  
+			</if>
+		</where>
+		order by seq desc
+	</select>
+	
+	<!-- 显示列表 -->
+	<select id="findClassifyList" resultType="com.titi.entity.ClassifyFormMap">
+		select id,title from tb_classify order by seq desc
+	</select>
+	
+	<select id="findClassifyById" parameterType="String" resultType="com.titi.entity.ClassifyFormMap">
+		select
+		<include refid="selectId" />
+		from tb_classify where id=#{id}
+	</select>
+	
+	<!-- 查看已经分类的商品 -->
+	<select id="viewItem" parameterType="com.titi.entity.ClassifyFormMap" resultType="com.titi.entity.ClassifyFormMap">
+		select 
+		c.id,
+		c.item_id, 
+		p.item_nm,
+		data_dic_pro.name province_name,
+ 	 	data_dic_city.name city_name,
+		t.title,
+		t.subtitle,
+		t.price_single,
+		t.inventory,
+		t.share_count,
+		t.view_count,
+		t.sale_hot,
+		t.favorite_count,
+		t.sale_num,
+		t.seq 
+		from tb_classify_item c 
+		left join tb_item t on c.item_id = t.id
+		left join tb_item_product p on p.id = t.product_id
+		left join tb_data_dictionary data_dic_pro on data_dic_pro.id=t.province_id
+    	left join tb_data_dictionary data_dic_city on data_dic_city.id=t.city_id
+    	<where>
+			<if test="item_id != null and item_id != ''">
+				and classify_id = ${item_id} 
+			</if>
+			<if test="item_nm != null and item_nm != ''">
+				and p.item_nm like '%${item_nm}%'
+			</if>
+			<if test="province_id != null and province_id != ''">
+				and t.province_id = ${province_id}  
+			</if>
+			<if test="city_id != null and city_id != ''">
+				and t.city_id = ${city_id}  
+			</if>
+			and from_sale = 0 and c.del_flag = false
+		</where>
+		order by t.seq desc
+	</select>
+</mapper>

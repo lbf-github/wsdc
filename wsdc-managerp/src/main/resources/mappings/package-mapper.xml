@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.PackageMapper">
+	
+	<sql id="selectId">
+		id,
+		site_id,
+		shop_id,
+		data_type,
+		title,
+		rec_yn,
+		seq,
+		create_date,
+		(select u.userName from cy_user u where u.id = tb_package.create_by) create_by,
+		update_date,
+		(select u.userName from cy_user u where u.id = tb_package.update_by) update_by
+	</sql>
+
+	<select id="selectList" resultType="com.titi.entity.PackageFormMap" parameterType="com.titi.entity.PackageFormMap">
+		select
+		<include refid="selectId" />
+		from tb_package 
+		<where>
+			<if test="title != null and title != ''">
+				and title like '%${title}%'
+			</if>
+			<if test="rec_yn != null and rec_yn != ''">
+				and rec_yn = #{rec_yn}  
+			</if>
+		</where>
+		order by seq desc
+	</select>
+	
+	<select id="selectItem" resultType="com.titi.entity.WrapFormMap">
+		select id,package_id,(select title from tb_item m where m.id = p.item_id) as item_nm,item_id,title from tb_package_item p
+		where package_id = ${package_id}
+	</select>
+	
+	<select id="selectItemList" resultType="com.titi.entity.ItemFormMap">
+		select m.id,
+		product.item_nm,
+		m.title,m.subtitle,m.price_single,m.inventory,m.sale_hot from tb_item m 
+		left join tb_package_item p on m.id = p.item_id
+		left join tb_item_product product on product.id=m.product_id 
+		where (p.item_id is null or p.item_id = '') and m.del_flag = false 
+	</select>
+	
+	<insert id="insertItem" parameterType="com.titi.entity.WrapFormMap">
+		insert into tb_package_item (package_id,item_id,title) values(${package_id},${item_id},#{title});
+	</insert>
+
+	<delete id="delItem">
+		delete from tb_package_item where package_id = #{id}
+	</delete>
+</mapper>

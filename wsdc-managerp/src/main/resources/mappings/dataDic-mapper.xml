@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.DataDicMapper">
+
+	<sql id="selectId">
+		id,
+		site_id,
+		shop_id,
+		data_type,
+		name,
+		parentId,
+		(select dic.name from tb_data_dictionary dic where dic.id = tb_data_dictionary.pid ) parentName,
+		resKey,
+		level,
+		ishide,
+		description
+	</sql>
+	
+	<!-- 查找子级资源 -->
+	<select id="findChildlists" resultType="com.titi.entity.DataDicFormMap">
+		SELECT
+		<include refid="selectId" />
+		from tb_data_dictionary
+		where parentId = #{id}
+	</select>
+	
+	<!-- 显示列表 -->
+	<select id="findDic" resultType="com.titi.entity.DataDicFormMap">
+		SELECT
+		<include refid="selectId" />
+		from tb_data_dictionary 
+		order by level
+	</select>
+
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.ClassifyImgMapper">
+
+	<!-- 查询商品分类图片 -->
+	<select id="getById" resultType="com.titi.entity.ClassifyImgFormMap" parameterType="com.titi.entity.ClassifyImgFormMap">
+		select id,classify_id,(select url from tb_attachment a where a.id = i.img_id) as img_id,url from tb_classify_img i where classify_id = #{classify_id} and type = #{type}
+	</select>
+
+	<!-- 删除商品分类图片 -->
+	<delete id="deleteImg">
+		delete from tb_classify_img where classify_id = #{0} and type = #{1}
+	</delete>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.GroupBuyMapper">
+	<select id="selectList" resultType="com.titi.entity.GroupBuyFormMap" parameterType="com.titi.entity.GroupBuyFormMap">
+		select id,create_uid,(select title from tb_item i where i.id = t.item_id) as item_id,item_id as itemId,
+		(SELECT nickname FROM tb_user_info a WHERE a.account_id = t.`tuan_uid`) AS tuan_uid,status,behavior,pay_no,start_time,end_time,count(*) as groupNum
+		from tb_item_tuan t GROUP BY create_uid 
+		<if test="status != null and status != ''">
+			having status = #{status}
+		</if>
+		order by start_time desc
+	</select>
+	
+	<select id="getdetail" resultType="com.titi.entity.GroupBuyFormMap">
+		select id,start_time,end_time,create_uid,item_id,tuan_uid,status,behavior,pay_no from tb_item_tuan where pay_no = #{pay_no}
+	</select>
+	
+	<select id="getGroupList" resultType="com.titi.entity.GroupBuyFormMap" parameterType="com.titi.entity.GroupBuyFormMap">
+		select id,create_uid,(select title from tb_item i where i.id = t.item_id) as item_id,
+		(SELECT nickname FROM tb_user_info a WHERE a.account_id = t.`tuan_uid`) AS tuan_uid,
+		(SELECT status FROM tb_pay_record r WHERE r.pay_no = t.`pay_no`) as status,behavior,pay_no,start_time,end_time
+		from tb_item_tuan t 
+		where create_uid = ${create_uid} order by start_time desc
+	</select>
+	
+	
+	<select id="getGroupNum" resultType="com.titi.entity.GroupBuyFormMap">
+		select id,create_uid,item_id,tuan_uid,status,behavior,pay_no,start_time,end_time from tb_item_tuan 
+		 where create_uid = #{create_uid} AND status = 2 group by tuan_uid
+	</select>
+	
+	<select id="getTime" resultType="com.titi.entity.GroupBuyFormMap">
+		SELECT id,start_time,end_time,create_uid,item_id,tuan_uid,STATUS,behavior,pay_no,start_time,end_time FROM tb_item_tuan  
+		WHERE create_uid = ${create_uid} and behavior = 0 order by start_time limit 1
+	</select>
+	
+</mapper>

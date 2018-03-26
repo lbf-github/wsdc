@@ -12,6 +12,7 @@
         <module name="wsdc-manager-pojo" />
         <module name="wsdc-manager-service" />
         <module name="wsdc-manager-web" />
+        <module name="wsdc-managerp" />
         <module name="wsdc-portal-web" />
         <module name="wsdc-search-web" />
         <module name="wsdc-sso-web" />
@@ -25,6 +26,7 @@
       <module name="wsdc-manager-pojo" target="1.7" />
       <module name="wsdc-manager-service" target="1.7" />
       <module name="wsdc-manager-web" target="1.7" />
+      <module name="wsdc-managerp" target="1.7" />
       <module name="wsdc-parent" target="1.7" />
       <module name="wsdc-portal-web" target="1.7" />
       <module name="wsdc-search-web" target="1.7" />

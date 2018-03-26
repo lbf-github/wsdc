@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.OrderMapper">
+	<!-- 以下与实体类的中字段一致 -->
+	<sql id="selectId">
+		o.id,
+		o.site_id,
+		o.shop_id,
+		o.data_type,
+		it.goods_id as item_id,
+		o.pay_no,
+		sn1,
+		product.item_nm,
+		item.title,
+		item.units,
+		o.user_id,
+
+		item_num,
+		money,
+		deliver_mode,
+		o.status,
+		name,
+		o.mobile,
+		address,
+		delivery_date,
+		delivery_date2,
+		delivery,
+		memo,
+		o.create_date,
+		(select remark from tb_order_status s where s.sn1 = o.sn1 order by update_date desc limit 1) as sub_status,
+		record.freight
+	</sql>
+	
+	<select id="findOrderPage" resultType="com.titi.entity.OrderFormMap">
+		select
+		<include refid="selectId" />
+			from tb_order o
+			left join tb_order_item it on it.rec_id= o.id
+			left join tb_item item on item.id= it.goods_id
+			left join tb_item_product product on product.id=item.product_id
+			left join tb_user_account accout on accout.id = o.user_id
+			left join tb_pay_record record on o.pay_no=record.pay_no
+		<where>
+			o.del_flag = false
+			<if test="startTime != null and endTime != null ">
+				and unix_timestamp(o.create_date) between unix_timestamp('${startTime}') and unix_timestamp('${endTime}')+24*60*60-1
+			</if>
+			<if test="item_nm != null and item_nm != ''">
+				and item_nm like '%${item_nm}%'
+			</if>
+			<if test="title != null and title != ''">
+				and item.title like '%${title}%'
+			</if>
+			<if test="name != null and name != ''">
+				and name like '%${name}%'
+			</if>
+			<if test="mobile != null and mobile != ''">
+				and mobile like '%${mobile}%'
+			</if>
+			<if test="sn1 != null and sn1 != ''">
+				and sn1 = ${sn1}
+			</if>
+			<if test="status != null and status != ''">
+				and o.status = ${status}
+			</if>
+		</where>
+		order by o.create_date desc,delivery_date2 asc,o.id	
+	</select>
+</mapper>

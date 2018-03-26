@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.AttnRecordMapper">
+	
+	<sql id="selectId">
+		id,
+		site_id,
+		shop_id,
+		data_type,
+		(select rider.name from tb_rider rider where rider.id = record.rider_id) name,
+		record.open_id,
+		user_id,
+		attention_yn,
+		create_date
+	</sql>
+
+	<select id="findAttnRecordPage" resultType="com.titi.entity.AttnRecordFormMap">
+		select
+		<include refid="selectId" />
+		from tb_attention_record record
+		<where>
+			<if test="attention_yn != null and attention_yn != ''">
+				and attention_yn = ${attention_yn}  
+			</if>
+			<if test="rider_id != null and rider_id != ''">
+				and rider_id = ${rider_id}  
+			</if>
+		</where>
+		order by create_date desc
+	</select>
+	
+</mapper>

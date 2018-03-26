@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.ActivityMapper">
+	
+	<sql id="selectId">
+		activity.id,
+		activity.site_id,
+		activity.shop_id,
+		activity.data_type,
+		title,
+		url,
+		hot_yn,
+		province_id,
+		city_id,
+		data_dic_pro.name province_name,
+	 	data_dic_city.name city_name,
+		(select url from tb_attachment a where a.id = activity.img_id) img_id,
+		create_date,
+		(select u.userName from cy_user u where u.id = activity.create_by) create_by,
+		update_date,
+		(select u.userName from cy_user u where u.id = activity.update_by) update_by,
+		seq
+	</sql>
+
+	<select id="findActivityPage" resultType="com.titi.entity.ActivityFormMap">
+		select
+		<include refid="selectId" />
+		from tb_activity activity
+		left join tb_data_dictionary data_dic_pro on data_dic_pro.id=activity.province_id
+    	left join tb_data_dictionary data_dic_city on data_dic_city.id=activity.city_id
+		<where>
+			<if test="title != null and title != ''">
+				and title like '%${title}%'
+			</if>
+			<if test="hot_yn != null and hot_yn != ''">
+				and hot_yn = ${hot_yn}  
+			</if>
+			<if test="province_id != null and province_id != ''">
+				and province_id = ${province_id}  
+			</if>
+			<if test="city_id != null and city_id != ''">
+				and city_id = ${city_id}  
+			</if>
+		</where>
+		order by seq desc
+	</select>
+	
+	<select id="findActivityById" parameterType="String" resultType="com.titi.entity.ActivityFormMap">
+		select
+		<include refid="selectId" />
+		from tb_activity activity
+		left join tb_data_dictionary data_dic_pro on data_dic_pro.id=activity.province_id
+    	left join tb_data_dictionary data_dic_city on data_dic_city.id=activity.city_id
+		where activity.id = #{id}
+	</select>
+</mapper>

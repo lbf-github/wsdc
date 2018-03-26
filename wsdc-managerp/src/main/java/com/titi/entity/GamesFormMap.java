@@ -1,0 +1,19 @@
+package com.titi.entity;
+
+import com.titi.annotation.TableSeg;
+import com.titi.util.FormMap;
+
+/**
+ * 游戏类
+ * @author lixiaoyuu
+ *
+ */
+@TableSeg(tableName = "tb_games",id="id")
+public class GamesFormMap extends FormMap<String,Object>{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.UserHealthMapper">
+	
+	<sql id="selectId">
+		h.id,
+		h.site_id,
+		h.shop_id,
+		h.data_type,
+		user_id,
+		info.nickname,
+		h.sex,
+		characters,
+		h.birth,
+		height,
+		weight,
+		disease_history,
+		habits,
+		eat_count,
+		fruit_yn,
+		drink,
+		eat_habits,
+		mobile,
+		bmi,
+		fat_rate,
+		shape,
+		ideal_weight,
+		between_weight,
+		dest_weight,
+		reason,
+		problems,
+		advice,
+		h.status,
+		box_id,
+		box.city_id,
+		box.pac_num,
+		box.title,
+		h.create_by,
+		h.create_date,
+		h.update_by,
+		h.update_date
+	</sql>
+
+	<select id="findUserHealthPage" resultType="com.titi.entity.UserHealthFormMap">
+		select
+		<include refid="selectId" />
+		from tb_user_health h
+		left join tb_user_info info on info.account_id = h.user_id
+		left join tb_item box on box.id = h.box_id
+		<where>
+			<if test="nickname != null and nickname != ''">
+				and nickname like '%${nickname}%'
+			</if>
+			<if test="status != null and status != ''">
+				and status = #{status}  
+			</if>
+		</where>
+	</select>
+	
+</mapper>

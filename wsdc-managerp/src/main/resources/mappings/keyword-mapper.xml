@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.titi.mapper.KeywordMapper">
+
+	<!-- 搜索查询列表 -->
+	<select id="selectList" resultType="com.titi.entity.KeywordFormMap">
+		select id,site_id,shop_id,data_type,word,rel_word,frequency,frequency2,seq,create_date from tb_key_word
+		where 1 = 1
+		<if test="word != null and word != ''">
+			and word like '%${word}%'
+		</if>
+		order by seq desc
+	</select>
+
+</mapper>
