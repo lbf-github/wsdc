@@ -7,7 +7,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 关注骑手记录信息 管理 dao层接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface AttnRecordMapper extends BaseMapper{

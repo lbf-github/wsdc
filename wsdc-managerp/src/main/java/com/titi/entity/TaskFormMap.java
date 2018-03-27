@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 任务实体
- * @author 曾雄
+ * @author 陆彬峰
  */
 @TableSeg(tableName = "tb_task", id="id")
 public class TaskFormMap extends FormMap<String,Object>{

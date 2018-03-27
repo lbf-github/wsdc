@@ -7,7 +7,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 数据字典 Dao层接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 

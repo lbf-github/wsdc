@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 /**
  * 订单管理实体
- * @author 曾雄
+ * @author 陆彬峰
  */
 @TableSeg(tableName = "tb_order_item", id="id")
 public class OrderItemFormMap extends FormMap<String,Object>{

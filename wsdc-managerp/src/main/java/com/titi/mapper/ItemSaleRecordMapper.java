@@ -7,7 +7,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 商品销售记录信息 Dao层接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface ItemSaleRecordMapper extends BaseMapper{

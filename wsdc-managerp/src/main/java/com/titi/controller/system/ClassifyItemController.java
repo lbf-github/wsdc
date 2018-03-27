@@ -19,7 +19,7 @@ import com.titi.exception.SystemException;
 
 /**
  * 商品分类关联信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/classifyItem/")

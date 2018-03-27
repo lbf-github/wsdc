@@ -4,7 +4,7 @@ import com.titi.annotation.TableSeg;
 import com.titi.util.FormMap;
 /**
  * 商品评论
- * @author 刘放
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "tb_eval", id="id")

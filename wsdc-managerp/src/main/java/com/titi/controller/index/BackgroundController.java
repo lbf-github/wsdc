@@ -49,7 +49,7 @@ import com.mysql.jdbc.Connection;
 
 /**
  * 进行管理后台框架界面的类
- * @author 曾雄
+ * @author 陆彬峰
  */
 
 @Controller

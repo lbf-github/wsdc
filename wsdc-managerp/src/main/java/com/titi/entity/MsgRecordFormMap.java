@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 消息记录表 实体
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "tb_msg_record", id="id")

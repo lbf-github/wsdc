@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 搜索记录 实体
- * @author 曾雄
+ * @author 陆彬峰
  */
 @TableSeg(tableName = "tb_search_record", id="id")
 public class SearchRecordFormMap extends FormMap<String,Object>{

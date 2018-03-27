@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 系统(服务器)信息实体
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "cy_server_info", id="id")

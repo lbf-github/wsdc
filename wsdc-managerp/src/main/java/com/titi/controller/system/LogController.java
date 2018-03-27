@@ -15,7 +15,7 @@ import com.titi.util.Common;
 
 /**
  * 日志信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/log/")

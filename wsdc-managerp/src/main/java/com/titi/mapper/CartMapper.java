@@ -7,7 +7,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 购物车 Dao层接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface CartMapper extends BaseMapper{

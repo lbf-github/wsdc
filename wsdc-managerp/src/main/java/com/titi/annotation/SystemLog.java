@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /** 
  * 自定义注解 拦截Controller
  * Controller中包含SystemLog注解的操作记录操作日志
- * @author 曾雄
+ * @author 陆彬峰
  */  
   
 @Target({ElementType.PARAMETER, ElementType.METHOD})  

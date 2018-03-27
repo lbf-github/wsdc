@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 输出参数基类
  * 
- * @author 曾雄
+ * @author 陆彬峰
  * 
  */
 public class OutputResult {

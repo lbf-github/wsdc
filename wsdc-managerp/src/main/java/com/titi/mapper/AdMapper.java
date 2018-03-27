@@ -7,7 +7,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 广告管理 dao层接口
- * @author 刘放
+ * @author 陆彬峰
  *
  */
 public interface AdMapper extends BaseMapper{

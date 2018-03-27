@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 账户信息 接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface UserAccountMapper extends BaseMapper{

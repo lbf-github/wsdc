@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 前台用户账户信息实体
- * @author 曾雄
+ * @author 陆彬峰
  */
 @TableSeg(tableName = "tb_user_account", id="id")
 public class CustAccountFormMap extends FormMap<String,Object>{

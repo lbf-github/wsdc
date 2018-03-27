@@ -22,7 +22,7 @@ import com.titi.util.SystemInfo;
 
 /**
  * 系统(服务器)信息action
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @Controller

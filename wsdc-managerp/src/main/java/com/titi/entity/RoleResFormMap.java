@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 角色-菜单 实体
- * @author 曾雄
+ * @author 陆彬峰
  */
 @TableSeg(tableName = "cy_role_res", id="roleId")
 public class RoleResFormMap extends FormMap<String,Object>{

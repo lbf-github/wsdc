@@ -23,7 +23,7 @@ import com.titi.util.TreeUtil;
 
 /**
  * 数据字典信息 action
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @Controller

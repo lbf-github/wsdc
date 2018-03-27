@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 健康问答----问题实体
- * @author 曾雄
+ * @author 陆彬峰
  */
 @TableSeg(tableName = "tb_topic_question", id="id")
 public class TopicQuestionFormMap extends FormMap<String,Object>{

@@ -28,7 +28,7 @@ import com.titi.util.Common;
 
 /**
  * 产品信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/itemProduct/")

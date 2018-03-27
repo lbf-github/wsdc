@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 广告 实体
- * @author 刘放
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "tb_ad", id="id")

@@ -34,7 +34,7 @@ import com.titi.util.PasswordHelper;
 
 /**
  * 后台用户信息 action
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @Controller

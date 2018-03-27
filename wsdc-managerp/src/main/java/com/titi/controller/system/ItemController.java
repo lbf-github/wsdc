@@ -38,7 +38,7 @@ import com.titi.util.WebUtil;
 
 /**
  * 商品信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/item/")

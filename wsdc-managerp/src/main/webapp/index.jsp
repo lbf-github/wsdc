@@ -6,9 +6,7 @@
 <%@include file="/common/common.jspf"%>
 <script type="text/javascript">
 	$(function() {
-	    //修改时间2015年10月13日14:32:57
-	    //修改在手机上点击菜单后菜单不关闭问题
-	    //修改人赵雷
+
     	var winwidth = $("body").width();
     	if(winwidth<770){
       		$("#nav ul.lt li").click(function(){
@@ -16,7 +14,7 @@
      	});
     }
     
-    //---------修改人赵雷完毕----------
+
 	var tb = $("#loadhtml");
 	tb.html(CommnUtil.loadingImg());
 	tb.load(rootPath+"/welcome.jsp");
@@ -48,7 +46,7 @@
 					<i class="fa fa-bars"></i>
 				</a> <a href="index.shtml#" class="navbar-brand"
 					data-toggle="fullscreen"><%--<img
-					src="${ctx}/notebook/notebook_files/logo.png" class="m-r-sm">--%>全城游</a>
+					src="${ctx}/notebook/notebook_files/logo.png" class="m-r-sm">--%>网上点餐</a>
 				<a class="btn btn-link visible-xs" data-toggle="dropdown"
 					data-target=".nav-user"> <i class="fa fa-cog"></i>
 				</a>

@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * 需要给两个值<br>
  * tableName = "表名"<br>
  * id = "表的主键"(如果是多个主建,默认为第一个)<br>
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @Target({ ElementType.TYPE })

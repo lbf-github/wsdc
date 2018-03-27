@@ -7,7 +7,7 @@ import com.titi.util.FormMap;
 
 /**
  * 系统消息 实体
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "tb_msg", id="id")

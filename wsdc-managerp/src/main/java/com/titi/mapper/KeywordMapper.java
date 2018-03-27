@@ -7,7 +7,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 关键词管理 Dao层接口
- * @author 刘放
+ * @author 陆彬峰
  *
  */
 public interface KeywordMapper extends BaseMapper{

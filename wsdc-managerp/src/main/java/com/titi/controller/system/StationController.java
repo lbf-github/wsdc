@@ -28,7 +28,7 @@ import com.titi.util.POIUtils;
 
 /**
  * 送货站点信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/station/")

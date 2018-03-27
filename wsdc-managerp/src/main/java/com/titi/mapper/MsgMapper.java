@@ -7,7 +7,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 系统消息 dao层接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface MsgMapper extends BaseMapper{

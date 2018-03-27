@@ -8,7 +8,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 骑手信息管理 dao层接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 

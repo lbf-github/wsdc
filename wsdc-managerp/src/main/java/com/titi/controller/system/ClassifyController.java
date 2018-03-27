@@ -34,7 +34,7 @@ import com.titi.util.Common;
 
 /**
  * 商品分类信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/classify/")

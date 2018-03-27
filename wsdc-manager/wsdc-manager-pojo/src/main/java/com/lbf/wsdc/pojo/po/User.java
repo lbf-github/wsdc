@@ -17,6 +17,8 @@ public class User {
 
     private Integer level;
 
+    private Integer status;
+
     public Long getUserid() {
         return userid;
     }
@@ -79,5 +81,13 @@ public class User {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

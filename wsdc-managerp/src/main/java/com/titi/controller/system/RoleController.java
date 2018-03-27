@@ -22,7 +22,7 @@ import com.titi.util.Common;
 
 /**
  * 用户角色信息 action
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @Controller

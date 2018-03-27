@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 价格单位 接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface PriceUnitTypeMapper extends BaseMapper{

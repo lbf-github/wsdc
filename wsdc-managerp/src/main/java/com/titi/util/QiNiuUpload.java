@@ -10,7 +10,7 @@ import com.titi.util.Constants;
 
 /**
  * 七牛上传
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public class QiNiuUpload {

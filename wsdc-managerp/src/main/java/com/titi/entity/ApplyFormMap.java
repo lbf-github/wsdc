@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 申请售后
- * @author 刘放
+ * @author 陆彬峰
  * 
  */
 @TableSeg(tableName = "tb_service_apply", id = "id")

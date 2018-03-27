@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /***
  * 菜单-用户 实体
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "cy_res_user", id="userId")

@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 系统操作日志 实体
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "cy_log", id="id")

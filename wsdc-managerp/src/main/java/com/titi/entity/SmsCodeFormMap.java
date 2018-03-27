@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 验证码 实体
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "tb_sms_code", id="id")

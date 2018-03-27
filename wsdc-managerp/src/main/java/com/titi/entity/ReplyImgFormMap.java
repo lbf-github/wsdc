@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 商品评论图片
- * @author 刘放
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "tb_eval_img", id="id")

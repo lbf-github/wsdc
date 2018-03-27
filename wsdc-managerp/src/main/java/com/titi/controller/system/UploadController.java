@@ -21,7 +21,7 @@ import com.titi.util.QiNiuUpload;
 
 /**
  * 七牛云上传action
- * @author 刘放
+ * @author 陆彬峰
  *
  */
 @Controller

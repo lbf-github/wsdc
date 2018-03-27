@@ -21,7 +21,7 @@ import com.titi.plugin.PageView;
 import com.titi.util.Common;
 /**
  * 关键词管理
- * @author 刘放
+ * @author 陆彬峰
  *
  */
 @Controller

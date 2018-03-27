@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 经典案例 实体
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "tb_classic_cases", id="id")

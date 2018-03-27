@@ -9,7 +9,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 健康问答----问题 Dao层接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface TopicQuestionMapper extends BaseMapper{

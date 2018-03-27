@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 价格单位 实体
- * @author 曾雄
+ * @author 陆彬峰
  */
 @TableSeg(tableName = "tb_pirce_unit_type", id="id")
 public class PriceUnitTypeFormMap extends FormMap<String,Object>{

@@ -28,7 +28,7 @@ import com.titi.util.FormMap;
 /**
  * 通用Controller
  * 
- * @author 曾雄
+ * @author 陆彬峰
  */
 public class BaseController {
 	

@@ -7,7 +7,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 站点管理 dao层接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface StationMapper extends BaseMapper{

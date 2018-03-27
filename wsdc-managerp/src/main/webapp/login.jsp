@@ -6,7 +6,7 @@
 <!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
 <meta name="renderer" content="webkit">
-<title>全城游后台管理系统</title>
+<title>网上点餐后台管理系统</title>
 <link href="<%=Constants.IMAGE_URL %>titi_orchard_favicon.ico" rel="shortcut icon" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"	href="${pageContext.servletContext.contextPath }/admin_files/min.css">
@@ -30,7 +30,7 @@
 						<td align="left"><img
 							src="${pageContext.servletContext.contextPath }/admin_files/logo_left.png"
 							alt="Logo"></td>
-							<td align="center" style="font-weight: bold;color: gray;">登录－全城游后台管理系统</td>
+							<td align="center" style="font-weight: bold;color: gray;">登录－网上点餐后台管理系统</td>
 						<td align="right"><img
 							src="${pageContext.servletContext.contextPath }/admin_files/logo_left.png"
 							alt="Logo"></td>

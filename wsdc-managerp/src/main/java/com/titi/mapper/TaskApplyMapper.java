@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 任务申请记录信息接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface TaskApplyMapper extends BaseMapper{

@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 站点分类 实体
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "tb_station_classify", id="id")

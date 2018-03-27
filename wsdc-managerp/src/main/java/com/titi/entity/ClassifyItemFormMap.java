@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 商品分类关系表  实体
- * @author 曾雄
+ * @author 陆彬峰
  */
 @TableSeg(tableName = "tb_classify_item", id="id")
 public class ClassifyItemFormMap extends FormMap<String,Object>{

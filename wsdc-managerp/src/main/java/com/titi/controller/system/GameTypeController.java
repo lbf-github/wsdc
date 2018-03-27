@@ -24,7 +24,7 @@ import java.sql.Timestamp;
 
 /**
  * 游戏类型管理 action
- * @author 刘放
+ * @author 陆彬峰
  *
  */
 @Controller

@@ -7,7 +7,7 @@
 	String image_url = Constants.IMAGE_URL;
 %>
 <c:set var="url" value="<%=image_url %>" />
-<title>全城游后台管理系统</title>
+<title>网上点餐后台管理系统</title>
 <link href="<%=image_url %>titi_orchard_favicon.ico" rel="shortcut icon" />
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">

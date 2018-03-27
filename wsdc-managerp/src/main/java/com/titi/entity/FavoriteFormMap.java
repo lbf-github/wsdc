@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 用户收藏
- * @author 刘放
+ * @author 陆彬峰
  * 
  */
 @TableSeg(tableName = "tb_favorite", id = "id")

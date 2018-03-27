@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 数据字典 实体
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "tb_data_dictionary", id="id")

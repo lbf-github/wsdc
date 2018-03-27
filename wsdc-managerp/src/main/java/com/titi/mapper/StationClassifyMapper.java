@@ -7,7 +7,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 站点分类管理 dao层接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface StationClassifyMapper extends BaseMapper{

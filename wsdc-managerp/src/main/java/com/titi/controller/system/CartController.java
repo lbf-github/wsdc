@@ -15,7 +15,7 @@ import com.titi.util.Common;
 
 /**
  * 购物车信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/cart/")

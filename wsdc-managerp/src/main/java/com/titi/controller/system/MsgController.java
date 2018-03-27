@@ -26,7 +26,7 @@ import com.titi.util.WebUtil;
 
 /**
  * 系统消息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/msg/")

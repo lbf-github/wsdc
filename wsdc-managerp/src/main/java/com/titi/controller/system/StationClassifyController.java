@@ -24,7 +24,7 @@ import com.titi.util.Common;
 
 /**
  * 站点分类信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/stationClassify/")

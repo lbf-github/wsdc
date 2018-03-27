@@ -7,7 +7,7 @@ import com.titi.mapper.base.BaseMapper;
 
 /**
  * 操作日志 Dao层接口
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 public interface LogMapper extends BaseMapper{

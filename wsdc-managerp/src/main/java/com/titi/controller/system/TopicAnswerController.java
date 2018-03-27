@@ -36,7 +36,7 @@ import com.titi.util.Common;
 
 /**
  * 健康社区 --答案信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/topicAnswer/")

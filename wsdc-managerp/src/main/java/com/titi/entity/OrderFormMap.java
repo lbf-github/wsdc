@@ -7,7 +7,7 @@ import com.titi.util.FormMap;
 
 /**
  * 订单管理实体
- * @author 曾雄
+ * @author 陆彬峰
  */
 @TableSeg(tableName = "tb_order", id="id")
 public class OrderFormMap extends FormMap<String,Object>{

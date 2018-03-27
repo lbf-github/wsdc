@@ -37,7 +37,7 @@ import com.titi.util.TreeUtil;
 
 /**
  * 菜单信息 action
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @Controller

@@ -23,7 +23,7 @@ import com.titi.util.Common;
 
 /**
  * 首页头条信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/headline/")

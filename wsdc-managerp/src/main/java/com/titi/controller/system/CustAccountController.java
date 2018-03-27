@@ -26,7 +26,7 @@ import com.titi.util.PwdUtil;
 
 /**
  * 用户账户信息  action
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/custAccount/")

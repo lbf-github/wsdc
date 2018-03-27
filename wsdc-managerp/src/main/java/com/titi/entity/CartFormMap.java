@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 购物车信息 实体
- * @author 曾雄
+ * @author 陆彬峰
  *
  */
 @TableSeg(tableName = "tb_cart", id="id")

@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * 支付宝回调通知接口 action
  * 
- * @author 曾雄
+ * @author 陆彬峰
  */
 @Controller
 @RequestMapping("/client/")

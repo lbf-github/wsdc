@@ -5,7 +5,7 @@ import com.titi.util.FormMap;
 
 /**
  * 健康问答答案点赞记录
- * @author 刘放
+ * @author 陆彬峰
  * 
  */
 @TableSeg(tableName = "tb_favorite_record", id = "id")
