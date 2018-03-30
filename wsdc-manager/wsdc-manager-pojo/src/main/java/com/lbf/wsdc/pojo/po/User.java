@@ -1,5 +1,7 @@
 package com.lbf.wsdc.pojo.po;
 
+import java.util.Date;
+
 public class User {
     private Long userid;
 
@@ -18,6 +20,16 @@ public class User {
     private Integer level;
 
     private Integer status;
+
+    private Date createdate;
+
+    private Integer sex;
+
+    private String username;
+
+    private Date birth;
+
+    private String nickname;
 
     public Long getUserid() {
         return userid;
@@ -89,5 +101,45 @@ public class User {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Date getCreatedate() {
+        return createdate;
+    }
+
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
+    }
+
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
     }
 }

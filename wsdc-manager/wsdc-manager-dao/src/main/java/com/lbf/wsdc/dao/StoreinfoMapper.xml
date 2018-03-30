@@ -17,6 +17,8 @@
     <result column="newusernotice" property="newusernotice" jdbcType="VARCHAR" />
     <result column="tel" property="tel" jdbcType="CHAR" />
     <result column="uaccount" property="uaccount" jdbcType="CHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,7 +80,8 @@
   </sql>
   <sql id="Base_Column_List" >
     storeId, storeName, address, citycode, shophours, latlng, startprice, transportprice, 
-    transporttime, storelogo, notice, cheapennotice, newusernotice, tel, uaccount
+    transporttime, storelogo, notice, cheapennotice, newusernotice, tel, uaccount, latitude, 
+    longitude
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.StoreinfoExample" >
     select
@@ -115,14 +118,14 @@
       citycode, shophours, latlng, 
       startprice, transportprice, transporttime, 
       storelogo, notice, cheapennotice, 
-      newusernotice, tel, uaccount
-      )
+      newusernotice, tel, uaccount, 
+      latitude, longitude)
     values (#{storeid,jdbcType=BIGINT}, #{storename,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{citycode,jdbcType=CHAR}, #{shophours,jdbcType=CHAR}, #{latlng,jdbcType=VARCHAR}, 
       #{startprice,jdbcType=REAL}, #{transportprice,jdbcType=REAL}, #{transporttime,jdbcType=INTEGER}, 
       #{storelogo,jdbcType=VARCHAR}, #{notice,jdbcType=VARCHAR}, #{cheapennotice,jdbcType=VARCHAR}, 
-      #{newusernotice,jdbcType=VARCHAR}, #{tel,jdbcType=CHAR}, #{uaccount,jdbcType=CHAR}
-      )
+      #{newusernotice,jdbcType=VARCHAR}, #{tel,jdbcType=CHAR}, #{uaccount,jdbcType=CHAR}, 
+      #{latitude,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lbf.wsdc.pojo.po.Storeinfo" >
     insert into storeinfo
@@ -172,6 +175,12 @@
       <if test="uaccount != null" >
         uaccount,
       </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="storeid != null" >
@@ -218,6 +227,12 @@
       </if>
       <if test="uaccount != null" >
         #{uaccount,jdbcType=CHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -275,6 +290,12 @@
       <if test="record.uaccount != null" >
         uaccount = #{record.uaccount,jdbcType=CHAR},
       </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -296,7 +317,9 @@
       cheapennotice = #{record.cheapennotice,jdbcType=VARCHAR},
       newusernotice = #{record.newusernotice,jdbcType=VARCHAR},
       tel = #{record.tel,jdbcType=CHAR},
-      uaccount = #{record.uaccount,jdbcType=CHAR}
+      uaccount = #{record.uaccount,jdbcType=CHAR},
+      latitude = #{record.latitude,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -346,6 +369,12 @@
       <if test="uaccount != null" >
         uaccount = #{uaccount,jdbcType=CHAR},
       </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
     </set>
     where storeId = #{storeid,jdbcType=BIGINT}
   </update>
@@ -364,7 +393,9 @@
       cheapennotice = #{cheapennotice,jdbcType=VARCHAR},
       newusernotice = #{newusernotice,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=CHAR},
-      uaccount = #{uaccount,jdbcType=CHAR}
+      uaccount = #{uaccount,jdbcType=CHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR}
     where storeId = #{storeid,jdbcType=BIGINT}
   </update>
 </mapper>

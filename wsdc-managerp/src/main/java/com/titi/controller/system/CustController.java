@@ -74,7 +74,6 @@ public class CustController extends BaseController {
 		} 
 		return "success";
 	}
-
 	@ResponseBody
 	@RequestMapping("deleteEntity")
 	@Transactional(readOnly=false)//需要事务操作必须加入此注解
@@ -91,6 +90,7 @@ public class CustController extends BaseController {
 		}
 		return "success";
 	}
+
 
 	@RequestMapping("editUI")
 	public String editUI(Model model) {

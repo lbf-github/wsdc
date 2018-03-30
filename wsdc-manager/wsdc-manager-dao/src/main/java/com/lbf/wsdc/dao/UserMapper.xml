@@ -11,6 +11,11 @@
     <result column="headic" property="headic" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="birth" property="birth" jdbcType="DATE" />
+    <result column="nickName" property="nickname" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,7 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    userid, account, password, tel, email, paypassword, headic, level, status
+    userid, account, password, tel, email, paypassword, headic, level, status, createdate, 
+    sex, userName, birth, nickName
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.UserExample" >
     select
@@ -106,12 +112,14 @@
   <insert id="insert" parameterType="com.lbf.wsdc.pojo.po.User" >
     insert into user (userid, account, password, 
       tel, email, paypassword, 
-      headic, level, status
-      )
+      headic, level, status, 
+      createdate, sex, userName, 
+      birth, nickName)
     values (#{userid,jdbcType=BIGINT}, #{account,jdbcType=CHAR}, #{password,jdbcType=VARCHAR}, 
       #{tel,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{paypassword,jdbcType=VARCHAR}, 
-      #{headic,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}
-      )
+      #{headic,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{sex,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{birth,jdbcType=DATE}, #{nickname,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lbf.wsdc.pojo.po.User" >
     insert into user
@@ -143,6 +151,21 @@
       <if test="status != null" >
         status,
       </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="birth != null" >
+        birth,
+      </if>
+      <if test="nickname != null" >
+        nickName,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userid != null" >
@@ -171,6 +194,21 @@
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null" >
+        #{birth,jdbcType=DATE},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -210,6 +248,21 @@
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.createdate != null" >
+        createdate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        userName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birth != null" >
+        birth = #{record.birth,jdbcType=DATE},
+      </if>
+      <if test="record.nickname != null" >
+        nickName = #{record.nickname,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -225,7 +278,12 @@
       paypassword = #{record.paypassword,jdbcType=VARCHAR},
       headic = #{record.headic,jdbcType=VARCHAR},
       level = #{record.level,jdbcType=INTEGER},
-      status = #{record.status,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER},
+      createdate = #{record.createdate,jdbcType=TIMESTAMP},
+      sex = #{record.sex,jdbcType=INTEGER},
+      userName = #{record.username,jdbcType=VARCHAR},
+      birth = #{record.birth,jdbcType=DATE},
+      nickName = #{record.nickname,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,6 +315,21 @@
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null" >
+        birth = #{birth,jdbcType=DATE},
+      </if>
+      <if test="nickname != null" >
+        nickName = #{nickname,jdbcType=VARCHAR},
+      </if>
     </set>
     where userid = #{userid,jdbcType=BIGINT}
   </update>
@@ -269,7 +342,12 @@
       paypassword = #{paypassword,jdbcType=VARCHAR},
       headic = #{headic,jdbcType=VARCHAR},
       level = #{level,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      sex = #{sex,jdbcType=INTEGER},
+      userName = #{username,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=DATE},
+      nickName = #{nickname,jdbcType=VARCHAR}
     where userid = #{userid,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -31,6 +31,10 @@ public class Storeinfo {
 
     private String uaccount;
 
+    private String latitude;
+
+    private String longitude;
+
     public Long getStoreid() {
         return storeid;
     }
@@ -149,5 +153,21 @@ public class Storeinfo {
 
     public void setUaccount(String uaccount) {
         this.uaccount = uaccount == null ? null : uaccount.trim();
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude == null ? null : latitude.trim();
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude == null ? null : longitude.trim();
     }
 }
