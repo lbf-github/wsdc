@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lbf.wsdc.dao.UaddressMapper" >
   <resultMap id="BaseResultMap" type="com.lbf.wsdc.pojo.po.Uaddress" >
-    <id column="uaddressid" property="uaddressid" jdbcType="INTEGER" />
-    <id column="uaccount" property="uaccount" jdbcType="CHAR" />
+    <id column="addressid" property="addressid" jdbcType="BIGINT" />
+    <result column="uaddressid" property="uaddressid" jdbcType="INTEGER" />
+    <result column="uaccount" property="uaccount" jdbcType="CHAR" />
     <result column="ucontact" property="ucontact" jdbcType="VARCHAR" />
     <result column="usex" property="usex" jdbcType="INTEGER" />
     <result column="utel" property="utel" jdbcType="CHAR" />
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    uaddressid, uaccount, ucontact, usex, utel, uaddress, utag
+    addressid, uaddressid, uaccount, ucontact, usex, utel, uaddress, utag
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.UaddressExample" >
     select
@@ -85,17 +86,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.UaddressKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from uaddress
-    where uaddressid = #{uaddressid,jdbcType=INTEGER}
-      and uaccount = #{uaccount,jdbcType=CHAR}
+    where addressid = #{addressid,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.UaddressKey" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from uaddress
-    where uaddressid = #{uaddressid,jdbcType=INTEGER}
-      and uaccount = #{uaccount,jdbcType=CHAR}
+    where addressid = #{addressid,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.lbf.wsdc.pojo.po.UaddressExample" >
     delete from uaddress
@@ -104,16 +103,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lbf.wsdc.pojo.po.Uaddress" >
-    insert into uaddress (uaddressid, uaccount, ucontact, 
-      usex, utel, uaddress, 
-      utag)
-    values (#{uaddressid,jdbcType=INTEGER}, #{uaccount,jdbcType=CHAR}, #{ucontact,jdbcType=VARCHAR}, 
-      #{usex,jdbcType=INTEGER}, #{utel,jdbcType=CHAR}, #{uaddress,jdbcType=VARCHAR}, 
-      #{utag,jdbcType=VARCHAR})
+    insert into uaddress (addressid, uaddressid, uaccount, 
+      ucontact, usex, utel, 
+      uaddress, utag)
+    values (#{addressid,jdbcType=BIGINT}, #{uaddressid,jdbcType=INTEGER}, #{uaccount,jdbcType=CHAR}, 
+      #{ucontact,jdbcType=VARCHAR}, #{usex,jdbcType=INTEGER}, #{utel,jdbcType=CHAR}, 
+      #{uaddress,jdbcType=VARCHAR}, #{utag,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lbf.wsdc.pojo.po.Uaddress" >
     insert into uaddress
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addressid != null" >
+        addressid,
+      </if>
       <if test="uaddressid != null" >
         uaddressid,
       </if>
@@ -137,6 +139,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addressid != null" >
+        #{addressid,jdbcType=BIGINT},
+      </if>
       <if test="uaddressid != null" >
         #{uaddressid,jdbcType=INTEGER},
       </if>
@@ -169,6 +174,9 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update uaddress
     <set >
+      <if test="record.addressid != null" >
+        addressid = #{record.addressid,jdbcType=BIGINT},
+      </if>
       <if test="record.uaddressid != null" >
         uaddressid = #{record.uaddressid,jdbcType=INTEGER},
       </if>
@@ -197,7 +205,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update uaddress
-    set uaddressid = #{record.uaddressid,jdbcType=INTEGER},
+    set addressid = #{record.addressid,jdbcType=BIGINT},
+      uaddressid = #{record.uaddressid,jdbcType=INTEGER},
       uaccount = #{record.uaccount,jdbcType=CHAR},
       ucontact = #{record.ucontact,jdbcType=VARCHAR},
       usex = #{record.usex,jdbcType=INTEGER},
@@ -211,6 +220,12 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lbf.wsdc.pojo.po.Uaddress" >
     update uaddress
     <set >
+      <if test="uaddressid != null" >
+        uaddressid = #{uaddressid,jdbcType=INTEGER},
+      </if>
+      <if test="uaccount != null" >
+        uaccount = #{uaccount,jdbcType=CHAR},
+      </if>
       <if test="ucontact != null" >
         ucontact = #{ucontact,jdbcType=VARCHAR},
       </if>
@@ -227,17 +242,17 @@
         utag = #{utag,jdbcType=VARCHAR},
       </if>
     </set>
-    where uaddressid = #{uaddressid,jdbcType=INTEGER}
-      and uaccount = #{uaccount,jdbcType=CHAR}
+    where addressid = #{addressid,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.Uaddress" >
     update uaddress
-    set ucontact = #{ucontact,jdbcType=VARCHAR},
+    set uaddressid = #{uaddressid,jdbcType=INTEGER},
+      uaccount = #{uaccount,jdbcType=CHAR},
+      ucontact = #{ucontact,jdbcType=VARCHAR},
       usex = #{usex,jdbcType=INTEGER},
       utel = #{utel,jdbcType=CHAR},
       uaddress = #{uaddress,jdbcType=VARCHAR},
       utag = #{utag,jdbcType=VARCHAR}
-    where uaddressid = #{uaddressid,jdbcType=INTEGER}
-      and uaccount = #{uaccount,jdbcType=CHAR}
+    where addressid = #{addressid,jdbcType=BIGINT}
   </update>
 </mapper>

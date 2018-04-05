@@ -104,6 +104,66 @@ public class StoreinfoTypeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andStoreinfotypeidIsNull() {
+            addCriterion("storeinfotypeid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidIsNotNull() {
+            addCriterion("storeinfotypeid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidEqualTo(Long value) {
+            addCriterion("storeinfotypeid =", value, "storeinfotypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidNotEqualTo(Long value) {
+            addCriterion("storeinfotypeid <>", value, "storeinfotypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidGreaterThan(Long value) {
+            addCriterion("storeinfotypeid >", value, "storeinfotypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidGreaterThanOrEqualTo(Long value) {
+            addCriterion("storeinfotypeid >=", value, "storeinfotypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidLessThan(Long value) {
+            addCriterion("storeinfotypeid <", value, "storeinfotypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidLessThanOrEqualTo(Long value) {
+            addCriterion("storeinfotypeid <=", value, "storeinfotypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidIn(List<Long> values) {
+            addCriterion("storeinfotypeid in", values, "storeinfotypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidNotIn(List<Long> values) {
+            addCriterion("storeinfotypeid not in", values, "storeinfotypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidBetween(Long value1, Long value2) {
+            addCriterion("storeinfotypeid between", value1, value2, "storeinfotypeid");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreinfotypeidNotBetween(Long value1, Long value2) {
+            addCriterion("storeinfotypeid not between", value1, value2, "storeinfotypeid");
+            return (Criteria) this;
+        }
+
         public Criteria andStoreidIsNull() {
             addCriterion("storeid is null");
             return (Criteria) this;

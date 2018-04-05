@@ -1,6 +1,12 @@
 package com.lbf.wsdc.pojo.po;
 
-public class Storemenu extends StoremenuKey {
+public class Storemenu {
+    private Long menuid;
+
+    private Long storeid;
+
+    private Long foodid;
+
     private String foodname;
 
     private Float foodprices;
@@ -8,6 +14,30 @@ public class Storemenu extends StoremenuKey {
     private String foodtype;
 
     private String foodic;
+
+    public Long getMenuid() {
+        return menuid;
+    }
+
+    public void setMenuid(Long menuid) {
+        this.menuid = menuid;
+    }
+
+    public Long getStoreid() {
+        return storeid;
+    }
+
+    public void setStoreid(Long storeid) {
+        this.storeid = storeid;
+    }
+
+    public Long getFoodid() {
+        return foodid;
+    }
+
+    public void setFoodid(Long foodid) {
+        this.foodid = foodid;
+    }
 
     public String getFoodname() {
         return foodname;

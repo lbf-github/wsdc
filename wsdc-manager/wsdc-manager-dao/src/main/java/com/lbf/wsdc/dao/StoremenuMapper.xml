@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lbf.wsdc.dao.StoremenuMapper" >
   <resultMap id="BaseResultMap" type="com.lbf.wsdc.pojo.po.Storemenu" >
-    <id column="storeid" property="storeid" jdbcType="BIGINT" />
-    <id column="foodid" property="foodid" jdbcType="INTEGER" />
+    <id column="menuid" property="menuid" jdbcType="BIGINT" />
+    <result column="storeid" property="storeid" jdbcType="BIGINT" />
+    <result column="foodid" property="foodid" jdbcType="BIGINT" />
     <result column="foodname" property="foodname" jdbcType="VARCHAR" />
     <result column="foodprices" property="foodprices" jdbcType="REAL" />
     <result column="foodtype" property="foodtype" jdbcType="VARCHAR" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    storeid, foodid, foodname, foodprices, foodtype, foodic
+    menuid, storeid, foodid, foodname, foodprices, foodtype, foodic
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.StoremenuExample" >
     select
@@ -84,17 +85,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.StoremenuKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from storemenu
-    where storeid = #{storeid,jdbcType=BIGINT}
-      and foodid = #{foodid,jdbcType=INTEGER}
+    where menuid = #{menuid,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.StoremenuKey" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from storemenu
-    where storeid = #{storeid,jdbcType=BIGINT}
-      and foodid = #{foodid,jdbcType=INTEGER}
+    where menuid = #{menuid,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.lbf.wsdc.pojo.po.StoremenuExample" >
     delete from storemenu
@@ -103,16 +102,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lbf.wsdc.pojo.po.Storemenu" >
-    insert into storemenu (storeid, foodid, foodname, 
-      foodprices, foodtype, foodic
-      )
-    values (#{storeid,jdbcType=BIGINT}, #{foodid,jdbcType=INTEGER}, #{foodname,jdbcType=VARCHAR}, 
-      #{foodprices,jdbcType=REAL}, #{foodtype,jdbcType=VARCHAR}, #{foodic,jdbcType=VARCHAR}
-      )
+    insert into storemenu (menuid, storeid, foodid, 
+      foodname, foodprices, foodtype, 
+      foodic)
+    values (#{menuid,jdbcType=BIGINT}, #{storeid,jdbcType=BIGINT}, #{foodid,jdbcType=BIGINT}, 
+      #{foodname,jdbcType=VARCHAR}, #{foodprices,jdbcType=REAL}, #{foodtype,jdbcType=VARCHAR}, 
+      #{foodic,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lbf.wsdc.pojo.po.Storemenu" >
     insert into storemenu
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuid != null" >
+        menuid,
+      </if>
       <if test="storeid != null" >
         storeid,
       </if>
@@ -133,11 +135,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuid != null" >
+        #{menuid,jdbcType=BIGINT},
+      </if>
       <if test="storeid != null" >
         #{storeid,jdbcType=BIGINT},
       </if>
       <if test="foodid != null" >
-        #{foodid,jdbcType=INTEGER},
+        #{foodid,jdbcType=BIGINT},
       </if>
       <if test="foodname != null" >
         #{foodname,jdbcType=VARCHAR},
@@ -162,11 +167,14 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update storemenu
     <set >
+      <if test="record.menuid != null" >
+        menuid = #{record.menuid,jdbcType=BIGINT},
+      </if>
       <if test="record.storeid != null" >
         storeid = #{record.storeid,jdbcType=BIGINT},
       </if>
       <if test="record.foodid != null" >
-        foodid = #{record.foodid,jdbcType=INTEGER},
+        foodid = #{record.foodid,jdbcType=BIGINT},
       </if>
       <if test="record.foodname != null" >
         foodname = #{record.foodname,jdbcType=VARCHAR},
@@ -187,8 +195,9 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update storemenu
-    set storeid = #{record.storeid,jdbcType=BIGINT},
-      foodid = #{record.foodid,jdbcType=INTEGER},
+    set menuid = #{record.menuid,jdbcType=BIGINT},
+      storeid = #{record.storeid,jdbcType=BIGINT},
+      foodid = #{record.foodid,jdbcType=BIGINT},
       foodname = #{record.foodname,jdbcType=VARCHAR},
       foodprices = #{record.foodprices,jdbcType=REAL},
       foodtype = #{record.foodtype,jdbcType=VARCHAR},
@@ -200,6 +209,12 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lbf.wsdc.pojo.po.Storemenu" >
     update storemenu
     <set >
+      <if test="storeid != null" >
+        storeid = #{storeid,jdbcType=BIGINT},
+      </if>
+      <if test="foodid != null" >
+        foodid = #{foodid,jdbcType=BIGINT},
+      </if>
       <if test="foodname != null" >
         foodname = #{foodname,jdbcType=VARCHAR},
       </if>
@@ -213,16 +228,16 @@
         foodic = #{foodic,jdbcType=VARCHAR},
       </if>
     </set>
-    where storeid = #{storeid,jdbcType=BIGINT}
-      and foodid = #{foodid,jdbcType=INTEGER}
+    where menuid = #{menuid,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.Storemenu" >
     update storemenu
-    set foodname = #{foodname,jdbcType=VARCHAR},
+    set storeid = #{storeid,jdbcType=BIGINT},
+      foodid = #{foodid,jdbcType=BIGINT},
+      foodname = #{foodname,jdbcType=VARCHAR},
       foodprices = #{foodprices,jdbcType=REAL},
       foodtype = #{foodtype,jdbcType=VARCHAR},
       foodic = #{foodic,jdbcType=VARCHAR}
-    where storeid = #{storeid,jdbcType=BIGINT}
-      and foodid = #{foodid,jdbcType=INTEGER}
+    where menuid = #{menuid,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -398,4 +398,14 @@
       longitude = #{longitude,jdbcType=VARCHAR}
     where storeId = #{storeid,jdbcType=BIGINT}
   </update>
+  <select id="getOpenStoreInfo" resultMap="BaseResultMap">
+    SELECT * FROM storeinfo store LEFT JOIN user u ON store.uaccount=u.account
+    WHERE u.status=0
+  </select>
+
+  <select id="getOpenStoreInfoByTypeId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM storeinfo store LEFT JOIN storeinfo_type stype ON store.storeId=stype.storeid
+    LEFT JOIN storetype t ON stype.stypeid=t.stypeid
+    WHERE t.supertypeid=#{stypeid,jdbcType=INTEGER}
+  </select>
 </mapper>

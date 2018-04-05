@@ -178,4 +178,7 @@
       supertypeid = #{supertypeid,jdbcType=INTEGER}
     where stypeid = #{stypeid,jdbcType=INTEGER}
   </update>
+  <select id="selectTypes" resultMap="BaseResultMap">
+    SELECT * FROM storetype WHERE stypeid &gt;=1 and stypeid &lt;=7
+  </select>
 </mapper>

@@ -1,6 +1,12 @@
 package com.lbf.wsdc.pojo.po;
 
-public class Uaddress extends UaddressKey {
+public class Uaddress {
+    private Long addressid;
+
+    private Integer uaddressid;
+
+    private String uaccount;
+
     private String ucontact;
 
     private Integer usex;
@@ -10,6 +16,30 @@ public class Uaddress extends UaddressKey {
     private String uaddress;
 
     private String utag;
+
+    public Long getAddressid() {
+        return addressid;
+    }
+
+    public void setAddressid(Long addressid) {
+        this.addressid = addressid;
+    }
+
+    public Integer getUaddressid() {
+        return uaddressid;
+    }
+
+    public void setUaddressid(Integer uaddressid) {
+        this.uaddressid = uaddressid;
+    }
+
+    public String getUaccount() {
+        return uaccount;
+    }
+
+    public void setUaccount(String uaccount) {
+        this.uaccount = uaccount == null ? null : uaccount.trim();
+    }
 
     public String getUcontact() {
         return ucontact;

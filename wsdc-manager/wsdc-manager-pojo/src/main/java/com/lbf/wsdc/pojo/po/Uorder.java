@@ -2,7 +2,13 @@ package com.lbf.wsdc.pojo.po;
 
 import java.util.Date;
 
-public class Uorder extends UorderKey {
+public class Uorder {
+    private Long orderid;
+
+    private String uaccount;
+
+    private String ordercode;
+
     private Long storeid;
 
     private Integer uaddressid;
@@ -20,6 +26,30 @@ public class Uorder extends UorderKey {
     private Integer state;
 
     private String commentTwo;
+
+    public Long getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(Long orderid) {
+        this.orderid = orderid;
+    }
+
+    public String getUaccount() {
+        return uaccount;
+    }
+
+    public void setUaccount(String uaccount) {
+        this.uaccount = uaccount == null ? null : uaccount.trim();
+    }
+
+    public String getOrdercode() {
+        return ordercode;
+    }
+
+    public void setOrdercode(String ordercode) {
+        this.ordercode = ordercode == null ? null : ordercode.trim();
+    }
 
     public Long getStoreid() {
         return storeid;

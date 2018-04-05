@@ -105,6 +105,66 @@ public class UorderExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andOrderidIsNull() {
+            addCriterion("orderid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidIsNotNull() {
+            addCriterion("orderid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidEqualTo(Long value) {
+            addCriterion("orderid =", value, "orderid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidNotEqualTo(Long value) {
+            addCriterion("orderid <>", value, "orderid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidGreaterThan(Long value) {
+            addCriterion("orderid >", value, "orderid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidGreaterThanOrEqualTo(Long value) {
+            addCriterion("orderid >=", value, "orderid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidLessThan(Long value) {
+            addCriterion("orderid <", value, "orderid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidLessThanOrEqualTo(Long value) {
+            addCriterion("orderid <=", value, "orderid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidIn(List<Long> values) {
+            addCriterion("orderid in", values, "orderid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidNotIn(List<Long> values) {
+            addCriterion("orderid not in", values, "orderid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidBetween(Long value1, Long value2) {
+            addCriterion("orderid between", value1, value2, "orderid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderidNotBetween(Long value1, Long value2) {
+            addCriterion("orderid not between", value1, value2, "orderid");
+            return (Criteria) this;
+        }
+
         public Criteria andUaccountIsNull() {
             addCriterion("uaccount is null");
             return (Criteria) this;

@@ -1,7 +1,7 @@
 package com.lbf.wsdc.dao;
 
+import com.lbf.wsdc.pojo.po.StoreinfoType;
 import com.lbf.wsdc.pojo.po.StoreinfoTypeExample;
-import com.lbf.wsdc.pojo.po.StoreinfoTypeKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,15 +10,21 @@ public interface StoreinfoTypeMapper {
 
     int deleteByExample(StoreinfoTypeExample example);
 
-    int deleteByPrimaryKey(StoreinfoTypeKey key);
+    int deleteByPrimaryKey(Long storeinfotypeid);
 
-    int insert(StoreinfoTypeKey record);
+    int insert(StoreinfoType record);
 
-    int insertSelective(StoreinfoTypeKey record);
+    int insertSelective(StoreinfoType record);
 
-    List<StoreinfoTypeKey> selectByExample(StoreinfoTypeExample example);
+    List<StoreinfoType> selectByExample(StoreinfoTypeExample example);
 
-    int updateByExampleSelective(@Param("record") StoreinfoTypeKey record, @Param("example") StoreinfoTypeExample example);
+    StoreinfoType selectByPrimaryKey(Long storeinfotypeid);
 
-    int updateByExample(@Param("record") StoreinfoTypeKey record, @Param("example") StoreinfoTypeExample example);
+    int updateByExampleSelective(@Param("record") StoreinfoType record, @Param("example") StoreinfoTypeExample example);
+
+    int updateByExample(@Param("record") StoreinfoType record, @Param("example") StoreinfoTypeExample example);
+
+    int updateByPrimaryKeySelective(StoreinfoType record);
+
+    int updateByPrimaryKey(StoreinfoType record);
 }

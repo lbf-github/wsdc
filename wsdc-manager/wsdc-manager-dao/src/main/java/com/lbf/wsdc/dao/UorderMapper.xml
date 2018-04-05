@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lbf.wsdc.dao.UorderMapper" >
   <resultMap id="BaseResultMap" type="com.lbf.wsdc.pojo.po.Uorder" >
-    <id column="uaccount" property="uaccount" jdbcType="CHAR" />
-    <id column="ordercode" property="ordercode" jdbcType="CHAR" />
+    <id column="orderid" property="orderid" jdbcType="BIGINT" />
+    <result column="uaccount" property="uaccount" jdbcType="CHAR" />
+    <result column="ordercode" property="ordercode" jdbcType="CHAR" />
     <result column="storeId" property="storeid" jdbcType="BIGINT" />
     <result column="uaddressid" property="uaddressid" jdbcType="INTEGER" />
     <result column="orderfoodid" property="orderfoodid" jdbcType="VARCHAR" />
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    uaccount, ordercode, storeId, uaddressid, orderfoodid, orderfoodpricenum, uNote, 
-    orderdate, comment, state, comment_two
+    orderid, uaccount, ordercode, storeId, uaddressid, orderfoodid, orderfoodpricenum, 
+    uNote, orderdate, comment, state, comment_two
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.UorderExample" >
     select
@@ -90,17 +91,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.lbf.wsdc.pojo.po.UorderKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from uorder
-    where uaccount = #{uaccount,jdbcType=CHAR}
-      and ordercode = #{ordercode,jdbcType=CHAR}
+    where orderid = #{orderid,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.UorderKey" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from uorder
-    where uaccount = #{uaccount,jdbcType=CHAR}
-      and ordercode = #{ordercode,jdbcType=CHAR}
+    where orderid = #{orderid,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.lbf.wsdc.pojo.po.UorderExample" >
     delete from uorder
@@ -109,18 +108,23 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lbf.wsdc.pojo.po.Uorder" >
-    insert into uorder (uaccount, ordercode, storeId, 
-      uaddressid, orderfoodid, orderfoodpricenum, 
-      uNote, orderdate, comment, 
-      state, comment_two)
-    values (#{uaccount,jdbcType=CHAR}, #{ordercode,jdbcType=CHAR}, #{storeid,jdbcType=BIGINT}, 
-      #{uaddressid,jdbcType=INTEGER}, #{orderfoodid,jdbcType=VARCHAR}, #{orderfoodpricenum,jdbcType=VARCHAR}, 
-      #{unote,jdbcType=CHAR}, #{orderdate,jdbcType=TIMESTAMP}, #{comment,jdbcType=VARCHAR}, 
-      #{state,jdbcType=INTEGER}, #{commentTwo,jdbcType=VARCHAR})
+    insert into uorder (orderid, uaccount, ordercode, 
+      storeId, uaddressid, orderfoodid, 
+      orderfoodpricenum, uNote, orderdate, 
+      comment, state, comment_two
+      )
+    values (#{orderid,jdbcType=BIGINT}, #{uaccount,jdbcType=CHAR}, #{ordercode,jdbcType=CHAR}, 
+      #{storeid,jdbcType=BIGINT}, #{uaddressid,jdbcType=INTEGER}, #{orderfoodid,jdbcType=VARCHAR}, 
+      #{orderfoodpricenum,jdbcType=VARCHAR}, #{unote,jdbcType=CHAR}, #{orderdate,jdbcType=TIMESTAMP}, 
+      #{comment,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{commentTwo,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.lbf.wsdc.pojo.po.Uorder" >
     insert into uorder
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderid,
+      </if>
       <if test="uaccount != null" >
         uaccount,
       </if>
@@ -156,6 +160,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=BIGINT},
+      </if>
       <if test="uaccount != null" >
         #{uaccount,jdbcType=CHAR},
       </if>
@@ -200,6 +207,9 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update uorder
     <set >
+      <if test="record.orderid != null" >
+        orderid = #{record.orderid,jdbcType=BIGINT},
+      </if>
       <if test="record.uaccount != null" >
         uaccount = #{record.uaccount,jdbcType=CHAR},
       </if>
@@ -240,7 +250,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update uorder
-    set uaccount = #{record.uaccount,jdbcType=CHAR},
+    set orderid = #{record.orderid,jdbcType=BIGINT},
+      uaccount = #{record.uaccount,jdbcType=CHAR},
       ordercode = #{record.ordercode,jdbcType=CHAR},
       storeId = #{record.storeid,jdbcType=BIGINT},
       uaddressid = #{record.uaddressid,jdbcType=INTEGER},
@@ -258,6 +269,12 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.lbf.wsdc.pojo.po.Uorder" >
     update uorder
     <set >
+      <if test="uaccount != null" >
+        uaccount = #{uaccount,jdbcType=CHAR},
+      </if>
+      <if test="ordercode != null" >
+        ordercode = #{ordercode,jdbcType=CHAR},
+      </if>
       <if test="storeid != null" >
         storeId = #{storeid,jdbcType=BIGINT},
       </if>
@@ -286,12 +303,13 @@
         comment_two = #{commentTwo,jdbcType=VARCHAR},
       </if>
     </set>
-    where uaccount = #{uaccount,jdbcType=CHAR}
-      and ordercode = #{ordercode,jdbcType=CHAR}
+    where orderid = #{orderid,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lbf.wsdc.pojo.po.Uorder" >
     update uorder
-    set storeId = #{storeid,jdbcType=BIGINT},
+    set uaccount = #{uaccount,jdbcType=CHAR},
+      ordercode = #{ordercode,jdbcType=CHAR},
+      storeId = #{storeid,jdbcType=BIGINT},
       uaddressid = #{uaddressid,jdbcType=INTEGER},
       orderfoodid = #{orderfoodid,jdbcType=VARCHAR},
       orderfoodpricenum = #{orderfoodpricenum,jdbcType=VARCHAR},
@@ -300,7 +318,6 @@
       comment = #{comment,jdbcType=VARCHAR},
       state = #{state,jdbcType=INTEGER},
       comment_two = #{commentTwo,jdbcType=VARCHAR}
-    where uaccount = #{uaccount,jdbcType=CHAR}
-      and ordercode = #{ordercode,jdbcType=CHAR}
+    where orderid = #{orderid,jdbcType=BIGINT}
   </update>
 </mapper>

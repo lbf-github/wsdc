@@ -2,8 +2,9 @@ package com.lbf.wsdc.dao;
 
 import com.lbf.wsdc.pojo.po.Storeinfo;
 import com.lbf.wsdc.pojo.po.StoreinfoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface StoreinfoMapper {
     int countByExample(StoreinfoExample example);
@@ -27,4 +28,8 @@ public interface StoreinfoMapper {
     int updateByPrimaryKeySelective(Storeinfo record);
 
     int updateByPrimaryKey(Storeinfo record);
+
+    List<Storeinfo> getOpenStoreInfo();
+
+    List<Storeinfo> getOpenStoreInfoByTypeId(Integer stypeid);
 }

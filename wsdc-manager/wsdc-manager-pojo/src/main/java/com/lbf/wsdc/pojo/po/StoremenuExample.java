@@ -104,6 +104,66 @@ public class StoremenuExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andMenuidIsNull() {
+            addCriterion("menuid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidIsNotNull() {
+            addCriterion("menuid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidEqualTo(Long value) {
+            addCriterion("menuid =", value, "menuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidNotEqualTo(Long value) {
+            addCriterion("menuid <>", value, "menuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidGreaterThan(Long value) {
+            addCriterion("menuid >", value, "menuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidGreaterThanOrEqualTo(Long value) {
+            addCriterion("menuid >=", value, "menuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidLessThan(Long value) {
+            addCriterion("menuid <", value, "menuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidLessThanOrEqualTo(Long value) {
+            addCriterion("menuid <=", value, "menuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidIn(List<Long> values) {
+            addCriterion("menuid in", values, "menuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidNotIn(List<Long> values) {
+            addCriterion("menuid not in", values, "menuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidBetween(Long value1, Long value2) {
+            addCriterion("menuid between", value1, value2, "menuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuidNotBetween(Long value1, Long value2) {
+            addCriterion("menuid not between", value1, value2, "menuid");
+            return (Criteria) this;
+        }
+
         public Criteria andStoreidIsNull() {
             addCriterion("storeid is null");
             return (Criteria) this;
@@ -174,52 +234,52 @@ public class StoremenuExample {
             return (Criteria) this;
         }
 
-        public Criteria andFoodidEqualTo(Integer value) {
+        public Criteria andFoodidEqualTo(Long value) {
             addCriterion("foodid =", value, "foodid");
             return (Criteria) this;
         }
 
-        public Criteria andFoodidNotEqualTo(Integer value) {
+        public Criteria andFoodidNotEqualTo(Long value) {
             addCriterion("foodid <>", value, "foodid");
             return (Criteria) this;
         }
 
-        public Criteria andFoodidGreaterThan(Integer value) {
+        public Criteria andFoodidGreaterThan(Long value) {
             addCriterion("foodid >", value, "foodid");
             return (Criteria) this;
         }
 
-        public Criteria andFoodidGreaterThanOrEqualTo(Integer value) {
+        public Criteria andFoodidGreaterThanOrEqualTo(Long value) {
             addCriterion("foodid >=", value, "foodid");
             return (Criteria) this;
         }
 
-        public Criteria andFoodidLessThan(Integer value) {
+        public Criteria andFoodidLessThan(Long value) {
             addCriterion("foodid <", value, "foodid");
             return (Criteria) this;
         }
 
-        public Criteria andFoodidLessThanOrEqualTo(Integer value) {
+        public Criteria andFoodidLessThanOrEqualTo(Long value) {
             addCriterion("foodid <=", value, "foodid");
             return (Criteria) this;
         }
 
-        public Criteria andFoodidIn(List<Integer> values) {
+        public Criteria andFoodidIn(List<Long> values) {
             addCriterion("foodid in", values, "foodid");
             return (Criteria) this;
         }
 
-        public Criteria andFoodidNotIn(List<Integer> values) {
+        public Criteria andFoodidNotIn(List<Long> values) {
             addCriterion("foodid not in", values, "foodid");
             return (Criteria) this;
         }
 
-        public Criteria andFoodidBetween(Integer value1, Integer value2) {
+        public Criteria andFoodidBetween(Long value1, Long value2) {
             addCriterion("foodid between", value1, value2, "foodid");
             return (Criteria) this;
         }
 
-        public Criteria andFoodidNotBetween(Integer value1, Integer value2) {
+        public Criteria andFoodidNotBetween(Long value1, Long value2) {
             addCriterion("foodid not between", value1, value2, "foodid");
             return (Criteria) this;
         }
