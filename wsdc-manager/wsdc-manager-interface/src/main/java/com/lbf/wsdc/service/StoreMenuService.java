@@ -14,4 +14,6 @@ public interface StoreMenuService {
 
     List<Storemenu> getListById(Long id);
 
+    Storemenu getStoreMenuById(Long menuid);
+
 }

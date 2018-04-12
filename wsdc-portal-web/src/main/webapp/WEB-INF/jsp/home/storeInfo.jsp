@@ -1,17 +1,21 @@
-<%--<%@page import="com.java.service.IntroduceService"%>--%>
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <link href="css/css.css" rel="stylesheet" type="text/css" />
-    <title>welcome-wsdc</title>
+      <link rel="stylesheet" type="text/css" href="${ctx}/js/sweetalert/sweetalert.css">
+      <%--<link href="${ctx}css/css.css" rel="stylesheet" type="text/css" />--%>
+      <link rel="stylesheet" type="text/css" href="${ctx}/js/jquery-easyui-1.3.3/themes/default/easyui.css">
+      <link rel="stylesheet" type="text/css" href="${ctx}/js/jquery-easyui-1.3.3/themes/icon.css">
+      <title>welcome-wsdc</title>
   </head>
   
   <body>
@@ -42,9 +46,13 @@
                 </ul>  --%>
                 <ul class="imglistul">
                 	<c:forEach var="list"  items="${menuList}">
-                    <li><img src="<%=basePath %>${list.foodic}" /><a href="<%=basePath %>thing/show.do?id=${list.menuid}">加入购物车</a>
-                    <a>${list.foodname}</a>
-                    <a>价格:${list.foodprices}</a>
+                    <li><img src="<%=basePath %>${list.foodic}" />
+                        <%--<a href="<%=basePath %>thing/show.do?id=${list.menuid}">加入购物车</a>--%>
+                        <input type="hidden" id="menuId" value="${list.menuid}">
+                        <input type="button" class="buy" value="加入购物车" onclick="addCart1(${list.menuid})"/>
+
+                        <a>${list.foodname}</a>
+                        <a>价格:${list.foodprices}</a>
                     </li>
 
                     </c:forEach>
@@ -55,6 +63,101 @@
     </table>
     
     
-    <%@ include file="foot.jsp" %> 
+    <%@ include file="foot.jsp" %>
+    <script type="text/javascript" src="${ctx}/js/sweetalert/sweetalert.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery-easyui-1.3.3/plugins/jquery.messager.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery-easyui-1.3.3/jquery.cookie.js"></script>
+    <script type="text/javascript">
+
+
+            function addCart1(menuId) {
+                var _ticket = $.cookie("login_token");
+                var _cart = $.cookie("cart_token");
+                $.messager.confirm("系统提示", "您确认要加入购物车吗？", function(r) {
+                    if (r) {
+                        $.post("${ctx}/cart/addCart.do", {
+                            menuid:menuId,
+                            tokenId:_ticket,
+                            cartId:_cart
+                        }, function(result) {
+                            <%--$.messager.alert("系统提示", result.mgf, "info", function () {--%>
+                            <%--location.href='${basePath}buy/getbuying.do';--%>
+                            <%--});--%>
+
+                            if(result.success){
+                                swal({
+                                        title: '提示',
+                                        text: result.message,
+                                        confirmButtonText: "确定"
+                                    },
+                                    function(){
+
+                                    });
+                            }else{
+                                swal({
+                                        title: '提示',
+                                        text: result.message,
+                                        confirmButtonText: "确定"
+                                    },
+                                    function(){
+
+                                        location.href = "http://localhost:8089/wsdc-sso";
+
+                                    });
+                            }
+                        }, "json");
+                    }
+                });
+
+            }
+
+
+      <%--$(function(){--%>
+
+          <%--$(".buy").click(function(){--%>
+              <%--var menuId=$("#menuId").val();--%>
+              <%--var _ticket = $.cookie("login_token");--%>
+              <%--var _cart = $.cookie("cart_token");--%>
+              <%--$.messager.confirm("系统提示", "您确认要加入购物车吗？", function(r) {--%>
+                  <%--if (r) {--%>
+                      <%--$.post("${ctx}/cart/addCart.do", {--%>
+                          <%--menuid:menuId,--%>
+                          <%--tokenId:_ticket,--%>
+                          <%--cartId:_cart--%>
+                      <%--}, function(result) {--%>
+                          <%--&lt;%&ndash;$.messager.alert("系统提示", result.mgf, "info", function () {&ndash;%&gt;--%>
+                              <%--&lt;%&ndash;location.href='${basePath}buy/getbuying.do';&ndash;%&gt;--%>
+                          <%--&lt;%&ndash;});&ndash;%&gt;--%>
+                          <%--alert(result);--%>
+                          <%--if(result.success){--%>
+                              <%--swal({--%>
+                                      <%--title: '提示',--%>
+                                      <%--text: data.message,--%>
+                                      <%--confirmButtonText: "确定"--%>
+                                  <%--},--%>
+                                  <%--function(){--%>
+
+                                  <%--});--%>
+                          <%--}else{--%>
+                              <%--swal({--%>
+                                      <%--title: '提示',--%>
+                                      <%--text: data.message,--%>
+                                      <%--confirmButtonText: "确定"--%>
+                                  <%--},--%>
+                                  <%--function(){--%>
+
+                                          <%--location.href = "http://localhost:8089/wsdc-sso";--%>
+
+                                  <%--});--%>
+                          <%--}--%>
+                      <%--}, "json");--%>
+                  <%--}--%>
+              <%--});--%>
+          <%--});--%>
+      <%--})--%>
+
+  </script>
   </body>
 </html>

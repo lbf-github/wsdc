@@ -31,4 +31,13 @@ public class StoreMenuServiceImpl implements StoreMenuService {
 
         return list;
     }
+
+    @Override
+    public Storemenu getStoreMenuById(Long menuid) {
+        StoremenuExample example = new StoremenuExample();
+        StoremenuExample.Criteria criteria = example.createCriteria();
+        criteria.andMenuidEqualTo(menuid);
+        List<Storemenu> list = storemenuMapper.selectByExample(example);
+        return list.get(0);
+    }
 }

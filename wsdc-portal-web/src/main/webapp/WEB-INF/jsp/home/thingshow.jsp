@@ -1,4 +1,4 @@
-<%@page import="com.java.service.IntroduceService"%>
+<%@page import="com.lbf.wsdc.service.IntroduceService"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 	String path = request.getContextPath();

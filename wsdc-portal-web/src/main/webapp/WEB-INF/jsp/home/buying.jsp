@@ -1,4 +1,4 @@
-<%@page import="com.java.service.IntroduceService"%>
+<%@page import="com.lbf.wsdc.service.IntroduceService"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
@@ -33,19 +33,21 @@ pageContext.setAttribute("basePath", basePath);
   <table class="layui-table">
     <thead>
       <tr>
-      	<th>菜谱</th>
-        <th>菜名</th>
-        <th>价格</th>
+      	<th>图片</th>
+        <th>名称</th>
+        <th>数量</th>
+        <th>单价</th>
         <th>操作</th>
       </tr> 
     </thead>
     <tbody>
-    <c:forEach var="list"  items="${buying}">
+    <c:forEach var="list"  items="${menuListCart}">
       <tr>
-      	<td><img src="${basePath }${list.thing.img}" style="width:100px; border:#CCCCCC; padding:3px" /></td>
-        <td>${list.thing.name}</td>
-        <td>${list.thing.price }元</td>
-        <td><a href="javascript:;;" id="${list.thing.id }" class="del">删除</a></td>
+      	<td><img src="${basePath }${list.foodic}" style="width:100px; border:#CCCCCC; padding:3px" /></td>
+        <td>${list.foodname}</td>
+        <td>${list.num}</td>
+        <td>${list.foodprices}元</td>
+        <td><a href="javascript:;;" id="${list.menuid}" class="del">删除</a></td>
       </tr>
       </c:forEach>
     </tbody>
