@@ -2,8 +2,9 @@ package com.lbf.wsdc.dao;
 
 import com.lbf.wsdc.pojo.po.Storemenu;
 import com.lbf.wsdc.pojo.po.StoremenuExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface StoremenuMapper {
     int countByExample(StoremenuExample example);
@@ -27,4 +28,6 @@ public interface StoremenuMapper {
     int updateByPrimaryKeySelective(Storemenu record);
 
     int updateByPrimaryKey(Storemenu record);
+
+    List<Storemenu> getStoreMenuByUserId(Long userid);
 }

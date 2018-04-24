@@ -51,7 +51,7 @@
 		u.status,
 		u.createdate
 		from user u LEFT JOIN storeinfo store on u.account=store.uaccount
-		where u.level=2
+		where (u.level=2 or (u.status=2 and u.level=1))
 		<if test="storeName != null and storeName != ''">
 			and store.storeName like '%${storeName}%'
 		</if>

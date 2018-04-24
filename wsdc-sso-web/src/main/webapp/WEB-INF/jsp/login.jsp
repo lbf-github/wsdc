@@ -157,26 +157,27 @@
     <div class="tab-pane fade in active" id="message">
         <form id="formMessage">
             <div class="messages" style="position: relative;">
-                <input type="tel" maxlength="11" placeholder="手机号" class="messages-input" />
-                <button class="messages-btn">获取验证码</button>
+                <input id="phone" name="phone" type="tel" maxlength="11" placeholder="手机号" class="messages-input" />
+                <button type="button" class="messages-btn" onclick="valdate1()">获取验证码</button>
             </div>
             <div class="messages">
-                <input type="tel" maxlength="8" placeholder="验证码" class="messages-input"/>
+                <input type="text" id="code" name="code" maxlength="8" placeholder="验证码" class="messages-input"/>
             </div>
             <div class="messages">
 
                 温馨提示：未注册帐号的手机号，登录时将自动注册，且代表您已同意《用户服务协议》
 
             </div>
+            <div id="hiddenVal"></div>
             <div class="messages">
-                <input type="submit"  value="登录" class="messages-input login-btn"/>
+                <input type="button" id="messageSubmit"  value="登录" class="messages-input login-btn"/>
             </div>
         </form>
     </div>
     <div class="tab-pane fade popup" id="password">
         <form id="formPassword">
             <div class="messages" style="position: relative;">
-                <input type="tel" maxlength="11" placeholder="手机号" name="tel" class="messages-input" />
+                <input  type="tel" maxlength="11" placeholder="手机号" name="tel" class="messages-input" />
             </div>
             <div class="messages">
                 <input type="password" maxlength="8" placeholder="密码" name="password" class="messages-input"/>
@@ -280,6 +281,75 @@
             }
         });
     }
+
+
+    function valdate1(){
+        debugger;
+        var phoneNum=$("#phone").val();
+        $.ajax({
+            url:"phone/Validation",
+            data:{"phone":phoneNum},
+            type:"post",
+            dataType:"json",
+            async:true,
+            success:function(data){
+
+                if(data!=null){
+                    var str="<input type=\"hidden\" id=\"reCode\" name=\"reCode\" value=\""+data+"\" />";
+                    $("#hiddenVal").html(str);
+                    alert("获取验证码成功");
+                }else{
+                    alert("未知错误");
+                }
+
+
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                alert("服务器错误");
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+                alert(errorThrown);
+            }
+        })
+    }
+
+
+    $("#messageSubmit").click(function () {
+        var phone = $("#phone").val();
+        var code = $("#code").val();
+        var recode = $("#reCode").val();
+
+        $("#formPassword").ajaxSubmit({
+            type:'post',
+            url: 'doRegister',
+            data:{
+                "phone":phone,
+                "code":code,
+                "recode":recode
+            },
+            success: function(data){
+                var redirectUrl = "${redirect}";
+                if(data.success){
+                    swal({
+                            title: '提示',
+                            text: data.message,
+                            confirmButtonText: "确定"
+                        },
+                        function(){
+                            if (redirectUrl == "") {
+                                location.href = "http://localhost:8081/wsdcp";
+                            } else {
+                                location.href = redirectUrl;
+                            }
+                        });
+                }else{
+                    swal(data.message);
+                }
+            }
+        });
+
+    });
 
 </script>
 

@@ -62,15 +62,15 @@ public class ProtalStoreController extends BaseController {
 	public String deleteEntity() {
 		String[] ids = getParaValues("ids")[0].split(",");
 		ProtalUserFormMap protalUserFormMap = getFormMap(ProtalUserFormMap.class);
-		protalUserFormMap.set("status",0);
+		protalUserFormMap.set("status",4);
 		protalUserFormMap.set("level",2);
 		for (String id : ids) {
 			try {
 				protalUserFormMap.set("userid",id);
 				protalUserMapper.editEntity(protalUserFormMap);
 			} catch (Exception e) {
-				logger.error("拉黑用户失败", e);
-				throw new SystemException("拉黑用户失败");
+				logger.error("审核失败", e);
+				throw new SystemException("审核失败");
 			}
 		}
 		return "success";

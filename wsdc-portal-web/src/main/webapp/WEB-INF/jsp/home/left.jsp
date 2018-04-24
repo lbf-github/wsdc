@@ -36,7 +36,7 @@
 		<a href="http://localhost:8089/wsdc-sso">注册</a>
 	</div>
 	<span>　　</span>
-	<div id="singlelogin-t"><a href="#">我要开店</a></div>
+	<div id="singlelogin-t"><a href="javascript:void(0)" onclick="toBecomeStore();">我要开店</a></div>
 
  </div>
   <%--<div class="leftborder">--%>
@@ -81,19 +81,31 @@ layui.use(['form', 'layedit', 'laydate','layer'], function(){
 $("#exit").click(function(){
     $.messager.confirm("系统提示", "确认要退出吗？", function(r) {
 		if (r) {
-			 $.post("${basePath}client/exit.do", function(result) {
+			 $.post("${ctx}/protalUser/exit.do", function(result) {
 				if (result.success) {
-						 $.messager.alert("系统提示", result.mgf, "info", function () {
-							location.href='${basePath}index.do';
-				        }); 
+						 $.messager.alert("系统提示", result.message, "info", function () {
+							location.href='http://localhost:8081/wsdcp';
+				        });
 				} else {
-					$.messager.alert("系统提示", result.mgf);
+					$.messager.alert("系统提示", result.message);
 				}
-			}, "json"); 
+			}, "json");
 		}
 	});
     return false; // 阻止表单自动提交事件
 });
+
+function toBecomeStore() {
+    var _ticket = $.cookie("login_token");
+    if(_ticket != null && _ticket != ""){
+        location.href = "${ctx}/storeInfo/toRegisterStore.do?tokenId="+_ticket;
+	}else{
+        $.messager.alert("系统提示","请登录","info",function () {
+            location.href = "http://localhost:8089/wsdc-sso";
+        })
+	}
+}
+
  
 </script>
   

@@ -5,7 +5,9 @@ import com.lbf.wsdc.common.jedis.JedisClient;
 import com.lbf.wsdc.common.util.CookieUtils;
 import com.lbf.wsdc.common.util.JsonUtils;
 import com.lbf.wsdc.pojo.po.Storemenu;
+import com.lbf.wsdc.pojo.po.Uaddress;
 import com.lbf.wsdc.pojo.vo.ShoppingCart;
+import com.lbf.wsdc.service.AddressService;
 import com.lbf.wsdc.service.StoreMenuService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -40,6 +42,9 @@ public class CartAction {
 
     @Autowired
     private StoreMenuService storeMenuService;
+
+    @Autowired
+    private AddressService addressService;
 
 
     @ResponseBody
@@ -127,17 +132,11 @@ public class CartAction {
      */
     @SuppressWarnings("unchecked")
     @RequestMapping("/getCart")
-    public String getbuying(Model model,String cartId) {
-//        List<Buy> l=null;
-//        if(request.getSession().getAttribute("buying")==null)
-//            l=new ArrayList<Buy>();
-//        else
-//            l=(List<Buy>)request.getSession().getAttribute("buying");
-//        int sum=0;
-//        for(int i=0;i<l.size();i++)
-//            sum+=l.get(i).getThing().getPrice();
-//        m.addAttribute("buying",l);
-//        m.addAttribute("sum",sum);
+    public String getbuying(Model model,String cartId,String tokenId) {
+
+
+
+
         List<ShoppingCart> menuListCart = null;
         String cartJson = jedisClient.get("Cart_TOKEN:" + cartId);
         if(StringUtils.isBlank(cartJson)){
@@ -153,9 +152,36 @@ public class CartAction {
             }
             model.addAttribute("sum",sum);
         }
+        //获取收货地址
+        List<Uaddress> uaddresses = addressService.getMyAddress(tokenId);
+        model.addAttribute("uaddresses",uaddresses);
 
         return "home/buying";
     }
 
+    /**
+     *
+     * 购物车中删除菜品
+     *
+     */
+    @RequestMapping("/delMenuById")
+    @ResponseBody
+    public MessageResult delMenuById(Long menuid,String cartId,HttpServletRequest request, HttpServletResponse response){
+
+        MessageResult mr = null;
+        try {
+
+            mr = storeMenuService.deleteInMenuListCart(menuid,cartId);
+            if(mr.getData()!=null){
+                CookieUtils.setCookie(request, response, "cart_token", (String)mr.getData());
+            }
+
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+
+        return mr;
+    }
 
 }

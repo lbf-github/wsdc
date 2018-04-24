@@ -350,4 +350,9 @@
       nickName = #{nickname,jdbcType=VARCHAR}
     where userid = #{userid,jdbcType=BIGINT}
   </update>
+  <update id="updateStatus" parameterType="com.lbf.wsdc.pojo.po.User">
+    update user
+    SET status = #{status,jdbcType=INTEGER}
+    WHERE userid = #{userid,jdbcType=BIGINT}
+  </update>
 </mapper>

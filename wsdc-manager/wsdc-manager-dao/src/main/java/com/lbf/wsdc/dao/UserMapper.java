@@ -2,8 +2,9 @@ package com.lbf.wsdc.dao;
 
 import com.lbf.wsdc.pojo.po.User;
 import com.lbf.wsdc.pojo.po.UserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     int countByExample(UserExample example);
@@ -27,4 +28,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    int updateStatus(User user);
 }

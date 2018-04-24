@@ -320,4 +320,13 @@
       comment_two = #{commentTwo,jdbcType=VARCHAR}
     where orderid = #{orderid,jdbcType=BIGINT}
   </update>
+  <update id="updateComment" parameterType="com.lbf.wsdc.pojo.po.Uorder">
+    update uorder
+    <set>
+      <if test="comment != null and comment !=''">
+        comment = #{comment,jdbcType=VARCHAR}
+      </if>
+    </set>
+    WHERE orderid = #{orderid,jdbcType=BIGINT}
+  </update>
 </mapper>

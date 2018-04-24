@@ -12,6 +12,7 @@
 
     <!--1 扫描WEB层下注解类,可以扫描到base-package的当前包以及子包的所有注解类-->
     <context:component-scan base-package="com.lbf.wsdc.sso.web"/>
+    <context:component-scan base-package="com.lbf.wsdc.sso.message"/>
 
     <!-- aop 利用Spring AOP自定义注解处理操作日志 -->
     <!--<aop:aspectj-autoproxy proxy-target-class="true">-->

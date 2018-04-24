@@ -408,4 +408,21 @@
     LEFT JOIN storetype t ON stype.stypeid=t.stypeid
     WHERE t.supertypeid=#{stypeid,jdbcType=INTEGER}
   </select>
+  <update id="updateStoreInfo" parameterType="com.lbf.wsdc.pojo.po.Storeinfo">
+    update storeinfo
+    set storeName = #{storename,jdbcType=VARCHAR},
+      startprice = #{startprice,jdbcType=REAL},
+      transportprice = #{transportprice,jdbcType=REAL},
+      transporttime = #{transporttime,jdbcType=INTEGER},
+      cheapennotice = #{cheapennotice,jdbcType=VARCHAR},
+      newusernotice = #{newusernotice,jdbcType=VARCHAR}
+    where uaccount = #{uaccount,jdbcType=CHAR}
+  </update>
+  <select id="getByUserId" parameterType="java.lang.Long" resultType="com.lbf.wsdc.pojo.po.Storeinfo">
+    
+    select * from storeinfo s
+    LEFT JOIN user u ON s.uaccount = u.account
+    WHERE u.userid = #{userId}
+    
+  </select>
 </mapper>

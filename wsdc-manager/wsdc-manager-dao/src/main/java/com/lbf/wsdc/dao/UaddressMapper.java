@@ -2,8 +2,9 @@ package com.lbf.wsdc.dao;
 
 import com.lbf.wsdc.pojo.po.Uaddress;
 import com.lbf.wsdc.pojo.po.UaddressExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UaddressMapper {
     int countByExample(UaddressExample example);
@@ -27,4 +28,6 @@ public interface UaddressMapper {
     int updateByPrimaryKeySelective(Uaddress record);
 
     int updateByPrimaryKey(Uaddress record);
+
+    int updateAddress(Uaddress uaddress);
 }

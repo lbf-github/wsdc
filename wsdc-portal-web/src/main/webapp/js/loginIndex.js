@@ -20,19 +20,27 @@ var Wsdc = {
 
                         var account = data.data.account;
                         var html = "<div>欢迎，"+account+"</div>";
-                        html+="<div><a href=\"<%=basePath_left %>client/editform.do\">修改资料</a></div>";
-                        html+="<div><a href=\"<%=basePath_left %>client/pwd.do\">修改密码</a></div>";
-                        html+="<div><a href=\"<%=basePath_left %>buy/my_list.do\">我的订单</a></div>";
-                        html+="<div><a href=\"<%=basePath_left %>pinglun/my_list.do\">我的点评</a></div>";
-                        html+="<div><a href=\""+useHome+"cart/getCart.do?cartId="+_cart+"\">购物车</a></div>";
-                        html+="<div><a id=\"exit\" href=\"<%=basePath_left %>client/exit.do\">安全退出</a></div>"
+                        html+="<div><a href=\""+useHome+"protalUser/editform.do?tokenId="+_ticket+"\">修改资料</a></div>";
+                        html+="<div><a href=\""+useHome+"protalUser/toEditPwd.do?tokenId="+_ticket+"\">修改密码</a></div>";
+                        html+="<div><a href=\""+useHome+"order/toOrder.do?tokenId="+_ticket+"\">我的订单</a></div>";
+                        // html+="<div><a href=\"<%=basePath_left %>pinglun/my_list.do\">我的评论</a></div>";
+                        html+="<div><a href=\""+useHome+"address/myAddresslist.do?tokenId="+_ticket+"\">我的地址</a></div>";
+                        html+="<div><a href=\""+useHome+"cart/getCart.do?cartId="+_cart+"&tokenId="+_ticket+"\">我的购物车</a></div>";
+                        html+="<div><a id=\"exit\" href=\"javascript:void(0)\">安全退出</a></div>"
                         $("#singleloginIndex").html(html);
                         var level = data.data.level;
                         var reStatus = data.data.status;
                         if(level == 2 && (reStatus==0 || reStatus==4)){
                             var myShop="";
-                            myShop+="<a href=\"http://localhost:8080/\">我的店铺</a>";
+                            myShop+="<a href=\""+useHome+"order/toStoreOrder.do?tokenId="+_ticket+"\">我的店铺</a>";
+                            $("#singlelogin-t").html(myShop);
                         }
+                        if(level == 1 && reStatus == 2){
+                            var myShop="审核中";
+                            $("#singlelogin-t").html(myShop);
+
+                        }
+
 
                     }
 

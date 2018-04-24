@@ -2,8 +2,9 @@ package com.lbf.wsdc.dao;
 
 import com.lbf.wsdc.pojo.po.Uorder;
 import com.lbf.wsdc.pojo.po.UorderExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UorderMapper {
     int countByExample(UorderExample example);
@@ -27,4 +28,8 @@ public interface UorderMapper {
     int updateByPrimaryKeySelective(Uorder record);
 
     int updateByPrimaryKey(Uorder record);
+
+    int updateComment(Uorder uorder);
+
+
 }

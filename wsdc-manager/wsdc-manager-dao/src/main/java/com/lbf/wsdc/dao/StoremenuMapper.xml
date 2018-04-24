@@ -240,4 +240,11 @@
       foodic = #{foodic,jdbcType=VARCHAR}
     where menuid = #{menuid,jdbcType=BIGINT}
   </update>
+
+
+  <select id="getStoreMenuByUserId" parameterType="java.lang.Long" resultType="com.lbf.wsdc.pojo.po.Storemenu">
+    SELECT * FROM storemenu menu LEFT JOIN storeinfo store ON menu.storeid = store.storeId
+    LEFT JOIN user u ON u.account = store.uaccount
+    WHERE u.userid = #{userid}
+  </select>
 </mapper>

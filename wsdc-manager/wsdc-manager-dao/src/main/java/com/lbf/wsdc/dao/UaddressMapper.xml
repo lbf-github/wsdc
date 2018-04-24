@@ -255,4 +255,14 @@
       utag = #{utag,jdbcType=VARCHAR}
     where addressid = #{addressid,jdbcType=BIGINT}
   </update>
+  <update id="updateAddress" parameterType="com.lbf.wsdc.pojo.po.Uaddress">
+    UPDATE uaddress
+    <set>
+      <if test="ucontact != null and ucontact!= ''">ucontact = #{ucontact,jdbcType=VARCHAR},</if>
+      <if test="usex != null">usex = #{usex,jdbcType=INTEGER},</if>
+      <if test="utel != null and utel != ''">utel = #{utel,jdbcType=CHAR},</if>
+      <if test="uaddress != null and uaddress != ''">uaddress = #{uaddress,jdbcType=VARCHAR},</if>
+    </set>
+    where addressid = #{addressid,jdbcType=BIGINT}
+  </update>
 </mapper>

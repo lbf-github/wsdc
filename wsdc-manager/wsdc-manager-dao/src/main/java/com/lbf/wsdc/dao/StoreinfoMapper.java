@@ -32,4 +32,8 @@ public interface StoreinfoMapper {
     List<Storeinfo> getOpenStoreInfo();
 
     List<Storeinfo> getOpenStoreInfoByTypeId(Integer stypeid);
+
+    int updateStoreInfo(Storeinfo storeinfo);
+
+    Storeinfo getByUserId(Long userId);
 }

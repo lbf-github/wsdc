@@ -36,6 +36,10 @@ $(function() {
                     return "正常"
                 }else if(data == 2){
                     return "待审核"
+                }else if(data == 1){
+                    return "拉黑"
+                }else if(data == 4){
+                    return "正常(店面关门中)"
                 }
             }
         },{
@@ -57,6 +61,8 @@ $(function() {
 
     $("#search").click("click", function() {// 绑定查询按扭
         var searchParams = $("#searchForm").serializeJson();// 初始化传参数
+        // var searchParams = $("#storeName").val();
+        // alert(searchParams);
         grid.setOptions({
             data : searchParams
         });
@@ -71,7 +77,7 @@ $(function() {
         $("#search").trigger("click");
     }
 
-    // 还原
+    // 审核通过
 	$("#auditFun").click("click", function() {
         auditFun();
 	});
@@ -99,7 +105,7 @@ function auditFun() {
             ids : cbox.join(",")
         }, "json");
         if (s == "success") {
-            layer.msg('审核成功');
+            layer.msg('审核通过');
             grid.loadData();
         } else {
             layer.msg('审核失败');
